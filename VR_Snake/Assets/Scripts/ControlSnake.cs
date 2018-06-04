@@ -31,5 +31,15 @@ public class ControlSnake : MonoBehaviour {
             Debug.Log("right");
             MovementSnake.instance.rotateRight();
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("right");
+            MovementSnake.instance.rotateViewClockwise();
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("right");
+            MovementSnake.instance.rotateViewCounterClockwise();
+        }
     }
 }

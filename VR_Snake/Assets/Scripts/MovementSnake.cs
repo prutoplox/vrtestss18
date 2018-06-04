@@ -50,6 +50,15 @@ public class MovementSnake : MonoBehaviour {
         nextRotation = new Vector3(90, 0, 0);
     }
 
+    internal void rotateViewClockwise()
+    {
+        this.transform.Rotate(new Vector3(0, 0, 90));
+    }
+    internal void rotateViewCounterClockwise()
+    {
+        this.transform.Rotate(new Vector3(0, 0, -90));
+    }
+
     public int UpdatePosition(int msSinceLastCall)
     {
         //Für stabile Updaterate
