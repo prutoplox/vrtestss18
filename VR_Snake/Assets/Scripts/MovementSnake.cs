@@ -17,7 +17,8 @@ public class MovementSnake : MonoBehaviour {
     private int msInCurrentStep;
     private int msPerTick;
 
-    private Vector3 nextRotation;
+    private List<Vector3> snakeRotations;
+    private Vector3 headTurning;
 
     // Use this for initialization
     void Start () {
@@ -27,36 +28,47 @@ public class MovementSnake : MonoBehaviour {
         msPerTick = 500;
         snake = new List<GameObject>();
         snake.Add(snakeHead);
+        snake.Add(snakeBodyPart);
+        snakeRotations = new List<Vector3>();
+        snakeRotations.Add(new Vector3(0, 0, 0));
+        snakeRotations.Add(new Vector3(0, 0, 0));
 	}
 
     internal void rotateRight()
     {
-        nextRotation = new Vector3(0, 90, 0);
+        snakeRotations[0] = new Vector3(0, 90, 0);
 
     }
 
     internal void rotateLeft()
     {
-        nextRotation = new Vector3(0, -90, 0);
+        snakeRotations[0] = new Vector3(0, -90, 0);
     }
 
     internal void rotateUp()
     {
-        nextRotation = new Vector3(-90, 0, 0);
+        snakeRotations[0] = new Vector3(-90, 0, 0);
     }
 
     internal void rotateDown()
     {
-        nextRotation = new Vector3(90, 0, 0);
+        snakeRotations[0] = new Vector3(90, 0, 0);
     }
 
     internal void rotateViewClockwise()
     {
-        this.transform.Rotate(new Vector3(0, 0, 90));
+        rotateView(new Vector3(0, 0, 90));
     }
     internal void rotateViewCounterClockwise()
     {
-        this.transform.Rotate(new Vector3(0, 0, -90));
+        rotateView(new Vector3(0, 0, -90));
+    }
+
+    private void rotateView(Vector3 rotation)
+    {
+        headTurning += rotation;
+        headTurning = modulo(headTurning, new Vector3(360, 360, 360));
+        this.transform.Rotate(rotation);
     }
 
     public int UpdatePosition(int msSinceLastCall)
@@ -125,36 +137,55 @@ public class MovementSnake : MonoBehaviour {
     {
 
         //Für eigentliche Bewegung der Schlange
-        //erst Rotation
-        
-        this.transform.Rotate(nextRotation);
-        //dann Bewegung 
-        this.transform.Translate(Vector3.forward);
-
-        //prüfen, ob der Spielbereich verlassen wurde
-        checkIfAreaLeftAndFixPosition();
-
-        //prüfen, ob das Futter erreicht wurde
-        if(isInSameCell(food.transform.position, transform.position))
+        for (int i = 0; i < snake.Count; i++)
         {
-            //Get a random position
-            Vector3 newFoodPostion = getRandom();
-            //Make it fit the entire grid
-            newFoodPostion.Scale(CreateMap.instance.size);
-            //mvoe the food on the edges of the grid
-            food.transform.position = floorComponents(newFoodPostion);
-            //move it right into the middle of a block in the grid
-            food.transform.Translate(new Vector3((float)0.5, (float)0.5, (float)0.5));
+            //erst Rotation
+            snake[i].transform.Rotate(snakeRotations[i]);
+            //dann Bewegung 
+            snake[i].transform.Translate(Vector3.forward);
+
+            //prüfen, ob der Spielbereich verlassen wurde und ggf loop auf die andere Seite
+            checkIfAreaLeftAndFixPosition(snake[i].transform);
         }
 
-        //set Rotation to 0
-        nextRotation = new Vector3(0,0,0);
-        
+        //prüfen, ob das Futter erreicht wurde
+        if (isInSameCell(food.transform.position, transform.position))
+        {
+            MoveFoodToNewLocation();
+            GameObject newBody = Instantiate(snakeBodyPart);
+            snake.Add(newBody);
+            snakeRotations.Add(Vector3.forward);
+        }
+
+        snakeRotations[0] += headTurning;
+        snakeRotations[0] = modulo(snakeRotations[0], new Vector3(360, 360, 360));
+        for (int i = snakeRotations.Count - 1; i > 0; i--)
+        {
+            snakeRotations[i] = snakeRotations[i - 1];
+        }
+
+        //set Rotation of the head to 0
+        snakeRotations[0] = new Vector3(0, 0, 0);
+        headTurning = new Vector3(0, 0, 0);
+
     }
 
-    private void checkIfAreaLeftAndFixPosition()
+    private void MoveFoodToNewLocation()
     {
-        int leftGridVia = isInside(this.transform.position, CreateMap.instance.size);
+
+        //Get a random position
+        Vector3 newFoodPostion = getRandom();
+        //Make it fit the entire grid
+        newFoodPostion.Scale(CreateMap.instance.size);
+        //mvoe the food on the edges of the grid
+        food.transform.position = floorComponents(newFoodPostion);
+        //move it right into the middle of a block in the grid
+        food.transform.Translate(new Vector3((float)0.5, (float)0.5, (float)0.5));
+    }
+
+    private void checkIfAreaLeftAndFixPosition(Transform toCheck)
+    {
+        int leftGridVia = isInside(toCheck.position, CreateMap.instance.size);
         if (leftGridVia != 0)
         {
             switch (leftGridVia)
@@ -183,7 +214,7 @@ public class MovementSnake : MonoBehaviour {
                 default:
                     break;
             }
-            this.transform.position = modulo(this.transform.position, CreateMap.instance.size);
+            toCheck.position = modulo(toCheck.position, CreateMap.instance.size);
         }
     }
 
