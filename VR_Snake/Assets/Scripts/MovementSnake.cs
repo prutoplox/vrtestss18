@@ -23,6 +23,7 @@ public class MovementSnake : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        MoveFoodToNewLocation();
         instance = this;
         msInCurrentStep = 0;
         msPerTick = 500;
@@ -32,6 +33,12 @@ public class MovementSnake : MonoBehaviour {
         snakeRotations = new List<Vector3>();
         snakeRotations.Add(new Vector3(0, 0, 0));
         snakeRotations.Add(new Vector3(0, 0, 0));
+        //Testing
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
 	}
 
     internal void rotateRight()
@@ -123,7 +130,7 @@ public class MovementSnake : MonoBehaviour {
         return true;
     }
 
-    private Vector3 getRandom()
+    private Vector3 getRandomVector()
     {
         return new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
     }
@@ -143,7 +150,8 @@ public class MovementSnake : MonoBehaviour {
             snake[i].transform.Rotate(snakeRotations[i]);
             //dann Bewegung 
             snake[i].transform.Translate(Vector3.forward);
-
+            snake[i].transform.position = floorComponents(snake[i].transform.position) + new Vector3(0.5f,0.5f,0.5f);
+            
             //prüfen, ob der Spielbereich verlassen wurde und ggf loop auf die andere Seite
             checkIfAreaLeftAndFixPosition(snake[i].transform);
         }
@@ -152,11 +160,7 @@ public class MovementSnake : MonoBehaviour {
         if (isInSameCell(food.transform.position, transform.position))
         {
             MoveFoodToNewLocation();
-            GameObject newBody = Instantiate(snake[snake.Count - 1]);
-            snake.Add(newBody);
-            newBody.transform.Translate(Vector3.back);
-            newBody.transform.Rotate(new Vector3(360,360,360) - snakeRotations[snakeRotations.Count - 1]);
-            snakeRotations.Add(Vector3.forward);
+            GrowSnake();
         }
 
         snakeRotations[0] += headTurning;
@@ -172,11 +176,20 @@ public class MovementSnake : MonoBehaviour {
 
     }
 
+    private void GrowSnake()
+    {
+        GameObject newBody = Instantiate(snake[snake.Count - 1]);
+        snake.Add(newBody);
+        newBody.transform.Translate(Vector3.back);
+        newBody.transform.Rotate(new Vector3(360, 360, 360) - snakeRotations[snakeRotations.Count - 1]);
+        snakeRotations.Add(Vector3.forward);
+    }
+
     private void MoveFoodToNewLocation()
     {
 
         //Get a random position
-        Vector3 newFoodPostion = getRandom();
+        Vector3 newFoodPostion = getRandomVector();
         //Make it fit the entire grid
         newFoodPostion.Scale(CreateMap.instance.size);
         //mvoe the food on the edges of the grid
