@@ -15,7 +15,8 @@ public class MovementSnake : MonoBehaviour {
     public bool hasWon = false;
     public bool hasLost = false;
     private int msInCurrentStep;
-    private int msPerTick;
+    public int msPerTick;
+    public float progressInStep;
 
     private List<Vector3> snakeRotations;
     private Vector3 headTurning;
@@ -26,7 +27,6 @@ public class MovementSnake : MonoBehaviour {
         MoveFoodToNewLocation();
         instance = this;
         msInCurrentStep = 0;
-        msPerTick = 500;
         snake = new List<GameObject>();
         snake.Add(snakeHead);
         snake.Add(snakeBodyPart);
@@ -82,6 +82,8 @@ public class MovementSnake : MonoBehaviour {
     void Update()
     {
         UpdatePosition((int)(Time.deltaTime * 1000));
+        progressInStep = (float)msInCurrentStep / msPerTick;
+        Debug.Log(progressInStep);
     }
 
     public int UpdatePosition(int msSinceLastCall)
