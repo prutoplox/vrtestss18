@@ -25,7 +25,8 @@ public class CreateMap : MonoBehaviour {
                 for(int k = 0; k <= size.z; k++)
                 {
                     //Debug.Log(k.ToString() + i.ToString() + j.ToString());
-                    Instantiate(sphere, startSphere.transform.position + new Vector3(i*scalefactor,j*scalefactor,k*scalefactor) , startSphere.rotation);
+                    GameObject newGrid = Instantiate(sphere, startSphere.transform.position + new Vector3(i*scalefactor,j*scalefactor,k*scalefactor) , startSphere.rotation);
+                    newGrid.GetComponent<Renderer>().material.color = new Color(i / size.x, j / size.y, k / size.z );
                 }   
             }
         }
