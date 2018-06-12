@@ -8,9 +8,9 @@ public class CreateMap : MonoBehaviour
     public Transform startSphere;
     public GameObject sphere;
     public Vector3 size = new Vector3(20, 20, 20);
-    public bool isXAxisLooped = true;
-    public bool isYAxisLooped = true;
-    public bool isZAxisLooped = true;
+    public bool isXAxisLooped;
+    public bool isYAxisLooped;
+    public bool isZAxisLooped;
     public static CreateMap instance;
     public float scalefactor;
 

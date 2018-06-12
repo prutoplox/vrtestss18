@@ -12,8 +12,8 @@ public class MovementSnake : MonoBehaviour {
     public GameObject snakeHead;
     public GameObject snakeBodyPart;
 
-    public bool hasWon = false;
-    public bool hasLost = false;
+    public bool hasWon;
+    public bool hasLost;
     private int msInCurrentStep;
     public int msPerTick;
     public float progressInStep;
@@ -24,15 +24,16 @@ public class MovementSnake : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        MoveFoodToNewLocation();
         instance = this;
-        msInCurrentStep = 0;
-        snake = new List<GameObject>();
-        snake.Add(snakeHead);
-        snake.Add(snakeBodyPart);
-        snakeRotations = new List<Vector3>();
-        snakeRotations.Add(new Vector3(0, 0, 0));
-        snakeRotations.Add(new Vector3(0, 0, 0));
+
+        //Check if everything needed is correctly assigned
+        if (food == null || snakeHead == null || snakeBodyPart == null)
+        {
+            throw new MissingReferenceException();
+        }
+
+        Reset();
+
         //Testing
         GrowSnake();
         GrowSnake();
@@ -41,10 +42,27 @@ public class MovementSnake : MonoBehaviour {
         GrowSnake();
 	}
 
+    public void Reset()
+    {
+        hasWon = false;
+        hasLost = false;
+
+        msInCurrentStep = 0;
+        snake = new List<GameObject>();
+        snake.Add(snakeHead);
+        snake.Add(snakeBodyPart);
+        snakeRotations = new List<Vector3>();
+        snakeRotations.Add(Vector3.zero);
+        snakeRotations.Add(Vector3.zero);
+
+        headTurning = Vector3.zero;
+
+        MoveFoodToNewLocation();
+    }
+
     internal void rotateRight()
     {
         snakeRotations[0] = new Vector3(0, 90, 0);
-
     }
 
     internal void rotateLeft()
@@ -83,7 +101,6 @@ public class MovementSnake : MonoBehaviour {
     {
         UpdatePosition((int)(Time.deltaTime * 1000));
         progressInStep = (float)msInCurrentStep / msPerTick;
-        Debug.Log(progressInStep);
     }
 
     public int UpdatePosition(int msSinceLastCall)
@@ -102,6 +119,12 @@ public class MovementSnake : MonoBehaviour {
 
     private void UpdatePosition()
     {
+        if(hasLost || hasWon)
+        {
+            Debug.Log("Trying to move while lost/won");
+            return;
+        }
+
         //Make the body follow the new rotation of the head, without that the tail might get detached from the head
         snakeRotations[1] += headTurning;
         //snakeRotations[1] = modulo(snakeRotations[1] + new Vector3(360, 360, 360), new Vector3(360, 360, 360));
@@ -117,7 +140,13 @@ public class MovementSnake : MonoBehaviour {
             snake[i].transform.position = floorComponents(snake[i].transform.position) + new Vector3(0.5f,0.5f,0.5f);
             
             //prüfen, ob der Spielbereich verlassen wurde und ggf loop auf die andere Seite
-            checkIfAreaLeftAndFixPosition(snake[i].transform);
+            bool hasLeftArea = checkIfAreaLeftAndFixPosition(snake[i].transform);
+            
+            //lose when the head has left the area
+            if(hasLeftArea && i == 0)
+            {
+                hasLost = true;
+            }
         }
 
         //prüfen, ob das Futter erreicht wurde
@@ -136,8 +165,8 @@ public class MovementSnake : MonoBehaviour {
         snakeRotations[1] = snakeRotations[0];
 
         //set Rotation of the head to 0
-        snakeRotations[0] = new Vector3(0, 0, 0);
-        headTurning = new Vector3(0, 0, 0);
+        snakeRotations[0] = Vector3.zero;
+        headTurning = Vector3.zero;
     }
 
     private void GrowSnake()
@@ -159,7 +188,7 @@ public class MovementSnake : MonoBehaviour {
         //mvoe the food on the edges of the grid
         food.transform.position = floorComponents(newFoodPostion);
         //move it right into the middle of a block in the grid
-        food.transform.Translate(new Vector3((float)0.5, (float)0.5, (float)0.5));
+        food.transform.Translate(new Vector3(0.5f, 0.5f, 0.5f));
     }
 
     private Vector3 getRandomVector()
@@ -210,7 +239,7 @@ public class MovementSnake : MonoBehaviour {
         return true;
     }
 
-    private void checkIfAreaLeftAndFixPosition(Transform toCheck)
+    private bool checkIfAreaLeftAndFixPosition(Transform toCheck)
     {
         int leftGridVia = isInside(toCheck.position, CreateMap.instance.size);
         if (leftGridVia != 0)
@@ -221,21 +250,21 @@ public class MovementSnake : MonoBehaviour {
                     Debug.Log("Left the grid on the x axis");
                     if (!CreateMap.instance.isXAxisLooped)
                     {
-                        hasLost = true;
+                        return true;
                     }
                     break;
                 case 2:
                     Debug.Log("Left the grid on the y axis");
                     if (!CreateMap.instance.isYAxisLooped)
                     {
-                        hasLost = true;
+                        return true;
                     }
                     break;
                 case 3:
                     Debug.Log("Left the grid on the z axis");
                     if (!CreateMap.instance.isZAxisLooped)
                     {
-                        hasLost = true;
+                        return true;
                     }
                     break;
                 default:
@@ -243,5 +272,6 @@ public class MovementSnake : MonoBehaviour {
             }
             toCheck.position = modulo(toCheck.position, CreateMap.instance.size);
         }
+        return false;
     }
 }
