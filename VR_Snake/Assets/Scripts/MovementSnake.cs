@@ -7,7 +7,7 @@ public class MovementSnake : MonoBehaviour {
 
     public static MovementSnake instance;
 
-    public List<GameObject> snake;
+    private List<GameObject> snake;
     public GameObject food;
     public GameObject snakeHead;
     public GameObject snakeBodyPart;
@@ -17,6 +17,7 @@ public class MovementSnake : MonoBehaviour {
     private int msInCurrentStep;
     public int msPerTick;
     public float progressInStep;
+    public bool hasUpdated = false;
 
     private List<Vector3> snakeRotations;
     private Vector3 headTurning;
@@ -99,6 +100,7 @@ public class MovementSnake : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        hasUpdated = false;
         UpdatePosition((int)(Time.deltaTime * 1000));
         progressInStep = (float)msInCurrentStep / msPerTick;
     }
@@ -125,10 +127,10 @@ public class MovementSnake : MonoBehaviour {
             return;
         }
 
+        hasUpdated = true;
+
         //Make the body follow the new rotation of the head, without that the tail might get detached from the head
         snakeRotations[1] += headTurning;
-        //snakeRotations[1] = modulo(snakeRotations[1] + new Vector3(360, 360, 360), new Vector3(360, 360, 360));
-        snakeRotations[1] = snakeRotations[1] ;
 
         //Für eigentliche Bewegung der Schlange
         for (int i = 0; i < snake.Count; i++)
@@ -161,9 +163,6 @@ public class MovementSnake : MonoBehaviour {
             snakeRotations[i] = snakeRotations[i - 1];
         }
 
-        //snakeRotations[1] = modulo(snakeRotations[0] + new Vector3(360, 360, 360), new Vector3(360, 360, 360));
-        snakeRotations[1] = snakeRotations[0];
-
         //set Rotation of the head to 0
         snakeRotations[0] = Vector3.zero;
         headTurning = Vector3.zero;
@@ -176,6 +175,32 @@ public class MovementSnake : MonoBehaviour {
         newBody.transform.Translate(Vector3.back);
         newBody.transform.Rotate(new Vector3(360, 360, 360) - snakeRotations[snakeRotations.Count - 1]);
         snakeRotations.Add(Vector3.forward);
+    }
+
+    public int GetLength()
+    {
+        return snake.Count - 1;
+    }
+
+    public GameObject GetSnakePartGameObject(int index)
+    {
+        if (index == snake.Count - 1)
+            throw new IndexOutOfRangeException();
+
+        return snake[index];
+    }
+
+    public Transform GetStartPositionOf(int index)
+    {
+        return GetSnakePartGameObject(index).transform;
+    }
+
+    public Transform GetEndPositionOf(int index)
+    {
+        index++;
+        if (index == 0)
+            throw new IndexOutOfRangeException();
+        return snake[index].transform;
     }
 
     private void MoveFoodToNewLocation()

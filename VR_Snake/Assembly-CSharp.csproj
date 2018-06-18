@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\ControlSnake.cs" />
      <Compile Include="Assets\Scripts\CreateMap.cs" />
+     <Compile Include="Assets\Scripts\DebugShowPosition.cs" />
      <Compile Include="Assets\Scripts\MovementSnake.cs" />
      <Compile Include="Assets\Scripts\SnakeCollision.cs" />
      <Compile Include="Assets\Scripts\VariableManager.cs" />

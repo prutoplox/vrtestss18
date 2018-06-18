@@ -30,7 +30,8 @@ public class CreateMap : MonoBehaviour
                 for (int k = 0; k <= size.z; k++)
                 {
                     //Debug.Log(k.ToString() + i.ToString() + j.ToString());
-                    GameObject newGrid = Instantiate(sphere, startSphere.transform.position + new Vector3(i * scalefactor, j * scalefactor, k * scalefactor), startSphere.rotation);
+                    //GameObject newGrid = Instantiate(sphere, startSphere.transform.position + new Vector3(i * scalefactor, j * scalefactor, k * scalefactor), startSphere.rotation);
+                    GameObject newGrid = Instantiate(sphere, startSphere.transform.position + new Vector3(i * scalefactor, j * scalefactor, k * scalefactor), startSphere.rotation, sphere.transform.parent);
                     newGrid.GetComponent<Renderer>().material.color = new Color(i / size.x, j / size.y, k / size.z);
 
                     if(i % largerGrid == 0 && j % largerGrid == 0 && k % largerGrid == 0)
