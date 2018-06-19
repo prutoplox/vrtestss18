@@ -41,6 +41,16 @@ public class MovementSnake : MonoBehaviour {
         GrowSnake();
         GrowSnake();
         GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
+        GrowSnake();
 	}
 
     public void Reset()

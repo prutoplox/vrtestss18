@@ -50,7 +50,7 @@ public class DebugShowPosition : MonoBehaviour {
 
             for(int i = 0; i < oldPositions.Length; i++)
             {
-                currentPos[i] = Vector3.Slerp(oldPositions[i], newPositions[i], progressMovement);
+                currentPos[i] = Vector3.Lerp(oldPositions[i], newPositions[i], progressMovement);
             }
 
             LineRenderer line = GetComponent<LineRenderer>();
