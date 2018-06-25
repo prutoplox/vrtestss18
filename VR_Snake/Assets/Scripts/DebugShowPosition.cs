@@ -11,7 +11,7 @@ public class DebugShowPosition : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
          snake = FindObjectsOfType<MovementSnake>()[0];
-         cam = GameObject.Find("TestCamera");
+         cam = GameObject.Find("TestCameraParent");
 	}
 
     Vector3[] oldPositions = null;
@@ -19,25 +19,10 @@ public class DebugShowPosition : MonoBehaviour {
     Quaternion oldRotation = Quaternion.identity;
     Quaternion newRotation = Quaternion.identity;
 
-
-	// Update is called once per frame
+    // Update is called once per frame
     void LateUpdate()
     {
-        if(snake.hasUpdated)
-        {
-            oldPositions = newPositions;
-            oldRotation = newRotation;
-
-            Transform[] trans = new Transform[snake.GetLength() + 1];
-            for (int i = 0; i < snake.GetLength(); i++)
-            {
-                trans[i] = snake.GetStartPositionOf(i);
-            }
-            trans[snake.GetLength()] = snake.GetEndPositionOf(snake.GetLength() - 1);
-
-            newPositions = Array.ConvertAll(trans, item => item.position);
-            newRotation = snake.GetStartPositionOf(0).transform.rotation;
-        }
+        GetPositionsFromSnake();
 
         if (oldPositions != null)
         {
@@ -65,4 +50,20 @@ public class DebugShowPosition : MonoBehaviour {
         }
 
 	}
+
+    private void GetPositionsFromSnake()
+    {
+        oldPositions = newPositions;
+        oldRotation = newRotation;
+
+        Transform[] trans = new Transform[snake.GetLength() + 1];
+        for (int i = 0; i < snake.GetLength(); i++)
+        {
+            trans[i] = snake.GetStartPositionOf(i);
+        }
+        trans[snake.GetLength()] = snake.GetEndPositionOf(snake.GetLength() - 1);
+
+        newPositions = Array.ConvertAll(trans, item => item.position);
+        newRotation = snake.GetStartPositionOf(0).transform.rotation;
+    }
 }
