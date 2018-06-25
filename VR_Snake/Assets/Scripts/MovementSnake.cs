@@ -120,7 +120,7 @@ public class MovementSnake : MonoBehaviour {
         return numberTicksDone;
     }
 
-    private void UpdatePosition()
+    internal void UpdatePosition()
     {
         if(VariableManager.instance.hasLost || VariableManager.instance.hasWon)
         {
