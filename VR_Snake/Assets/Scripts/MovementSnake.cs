@@ -12,12 +12,10 @@ public class MovementSnake : MonoBehaviour {
     public GameObject snakeHead;
     public GameObject snakeBodyPart;
 
-    public bool hasWon;
-    public bool hasLost;
     private int msInCurrentStep;
     public int msPerTick;
     public float progressInStep;
-    public bool hasUpdated = false;
+    public bool hasUpdated;
 
     private List<Vector3> snakeRotations;
     private Vector3 headTurning;
@@ -26,6 +24,8 @@ public class MovementSnake : MonoBehaviour {
     void Start () {
 
         instance = this;
+        //ignore what was set in the unity editor
+        hasUpdated = true;
 
         //Check if everything needed is correctly assigned
         if (food == null || snakeHead == null || snakeBodyPart == null)
@@ -38,26 +38,15 @@ public class MovementSnake : MonoBehaviour {
         //Testing
         GrowSnake();
         GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-        GrowSnake();
-	}
+        UpdatePosition();
+
+
+    }
 
     public void Reset()
     {
-        hasWon = false;
-        hasLost = false;
-
+        VariableManager.instance.hasWon = false;
+        VariableManager.instance.hasLost = false;
         msInCurrentStep = 0;
         snake = new List<GameObject>();
         snake.Add(snakeHead);
@@ -65,29 +54,31 @@ public class MovementSnake : MonoBehaviour {
         snakeRotations = new List<Vector3>();
         snakeRotations.Add(Vector3.zero);
         snakeRotations.Add(Vector3.zero);
-
         headTurning = Vector3.zero;
-
         MoveFoodToNewLocation();
     }
 
     internal void rotateRight()
     {
+        Debug.Log("Rotating right");
         snakeRotations[0] = new Vector3(0, 90, 0);
     }
 
     internal void rotateLeft()
     {
+        Debug.Log("Rotating left");
         snakeRotations[0] = new Vector3(0, -90, 0);
     }
 
     internal void rotateUp()
     {
+        Debug.Log("Rotating up");
         snakeRotations[0] = new Vector3(-90, 0, 0);
     }
 
     internal void rotateDown()
     {
+        Debug.Log("Rotating down");
         snakeRotations[0] = new Vector3(90, 0, 0);
     }
 
@@ -131,7 +122,7 @@ public class MovementSnake : MonoBehaviour {
 
     private void UpdatePosition()
     {
-        if(hasLost || hasWon)
+        if(VariableManager.instance.hasLost || VariableManager.instance.hasWon)
         {
             Debug.Log("Trying to move while lost/won");
             return;
@@ -157,7 +148,7 @@ public class MovementSnake : MonoBehaviour {
             //lose when the head has left the area
             if(hasLeftArea && i == 0)
             {
-                hasLost = true;
+                VariableManager.instance.hasLost = true;
             }
         }
 
