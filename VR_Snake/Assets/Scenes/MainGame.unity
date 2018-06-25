@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -390,7 +390,6 @@ GameObject:
   - component: {fileID: 229022676}
   - component: {fileID: 229022675}
   - component: {fileID: 229022674}
-  - component: {fileID: 229022678}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -467,26 +466,6 @@ Transform:
   m_Father: {fileID: 981963142}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &229022678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 229022673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca410a44f2b79c41a74e6f98f5feb42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSphere: {fileID: 1541789085}
-  sphere: {fileID: 1541789081}
-  size: {x: 20, y: 20, z: 20}
-  isXAxisLooped: 1
-  isYAxisLooped: 1
-  isZAxisLooped: 1
-  scalefactor: 1
-  largerGrid: 5
-  largerGridSizeFactor: 10
 --- !u!1 &250949905
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +475,6 @@ GameObject:
   m_Component:
   - component: {fileID: 250949906}
   - component: {fileID: 250949907}
-  - component: {fileID: 250949908}
   - component: {fileID: 250949909}
   - component: {fileID: 250949910}
   - component: {fileID: 250949911}
@@ -537,20 +515,9 @@ MonoBehaviour:
   food: {fileID: 1413311063}
   snakeHead: {fileID: 250949905}
   snakeBodyPart: {fileID: 1685741198}
-  msPerTick: 1000
+  msPerTick: 500
   progressInStep: 0
   hasUpdated: 0
---- !u!114 &250949908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 250949905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 226a31c24c3eaad45884941b7e8332d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &250949909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1216,7 +1183,6 @@ GameObject:
   - component: {fileID: 625154681}
   - component: {fileID: 625154680}
   - component: {fileID: 625154679}
-  - component: {fileID: 625154678}
   m_Layer: 0
   m_Name: Ground (4)
   m_TagString: Untagged
@@ -1237,26 +1203,6 @@ Transform:
   m_Father: {fileID: 981963142}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 180, y: 270, z: 89.99999}
---- !u!114 &625154678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 625154676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca410a44f2b79c41a74e6f98f5feb42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSphere: {fileID: 1541789085}
-  sphere: {fileID: 1541789081}
-  size: {x: 20, y: 20, z: 20}
-  isXAxisLooped: 1
-  isYAxisLooped: 1
-  isZAxisLooped: 1
-  scalefactor: 1
-  largerGrid: 5
-  largerGridSizeFactor: 10
 --- !u!64 &625154679
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1324,7 +1270,6 @@ GameObject:
   - component: {fileID: 647293582}
   - component: {fileID: 647293581}
   - component: {fileID: 647293580}
-  - component: {fileID: 647293579}
   m_Layer: 0
   m_Name: Ground (3)
   m_TagString: Untagged
@@ -1345,26 +1290,6 @@ Transform:
   m_Father: {fileID: 981963142}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 180, y: 180, z: 90}
---- !u!114 &647293579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 647293577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca410a44f2b79c41a74e6f98f5feb42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSphere: {fileID: 1541789085}
-  sphere: {fileID: 1541789081}
-  size: {x: 20, y: 20, z: 20}
-  isXAxisLooped: 1
-  isYAxisLooped: 1
-  isZAxisLooped: 1
-  scalefactor: 1
-  largerGrid: 5
-  largerGridSizeFactor: 10
 --- !u!64 &647293580
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1598,7 +1523,6 @@ GameObject:
   - component: {fileID: 831361126}
   - component: {fileID: 831361125}
   - component: {fileID: 831361124}
-  - component: {fileID: 831361123}
   m_Layer: 0
   m_Name: Ground (5)
   m_TagString: Untagged
@@ -1619,26 +1543,6 @@ Transform:
   m_Father: {fileID: 981963142}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 180, y: 90, z: 89.99999}
---- !u!114 &831361123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 831361121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca410a44f2b79c41a74e6f98f5feb42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSphere: {fileID: 1541789085}
-  sphere: {fileID: 1541789081}
-  size: {x: 20, y: 20, z: 20}
-  isXAxisLooped: 1
-  isYAxisLooped: 1
-  isZAxisLooped: 1
-  scalefactor: 1
-  largerGrid: 5
-  largerGridSizeFactor: 10
 --- !u!64 &831361124
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1791,7 +1695,6 @@ GameObject:
   - component: {fileID: 960108894}
   - component: {fileID: 960108893}
   - component: {fileID: 960108892}
-  - component: {fileID: 960108891}
   m_Layer: 0
   m_Name: Ground (2)
   m_TagString: Untagged
@@ -1812,26 +1715,6 @@ Transform:
   m_Father: {fileID: 981963142}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 90}
---- !u!114 &960108891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 960108889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca410a44f2b79c41a74e6f98f5feb42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSphere: {fileID: 1541789085}
-  sphere: {fileID: 1541789081}
-  size: {x: 20, y: 20, z: 20}
-  isXAxisLooped: 1
-  isYAxisLooped: 1
-  isZAxisLooped: 1
-  scalefactor: 1
-  largerGrid: 5
-  largerGridSizeFactor: 10
 --- !u!64 &960108892
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1898,6 +1781,8 @@ GameObject:
   - component: {fileID: 981963142}
   - component: {fileID: 981963143}
   - component: {fileID: 981963144}
+  - component: {fileID: 981963145}
+  - component: {fileID: 981963146}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -1950,6 +1835,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3550cb06f4ccf3e4d877dfbda5564a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &981963145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981963141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca410a44f2b79c41a74e6f98f5feb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSphere: {fileID: 1541789085}
+  sphere: {fileID: 1541789081}
+  size: {x: 20, y: 20, z: 20}
+  isXAxisLooped: 1
+  isYAxisLooped: 1
+  isZAxisLooped: 1
+  scalefactor: 1
+  largerGrid: 5
+  largerGridSizeFactor: 10
+--- !u!114 &981963146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981963141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 226a31c24c3eaad45884941b7e8332d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1030371897
@@ -2578,7 +2494,6 @@ GameObject:
   - component: {fileID: 1693030540}
   - component: {fileID: 1693030539}
   - component: {fileID: 1693030538}
-  - component: {fileID: 1693030537}
   m_Layer: 0
   m_Name: Ground (1)
   m_TagString: Untagged
@@ -2599,26 +2514,6 @@ Transform:
   m_Father: {fileID: 981963142}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!114 &1693030537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1693030535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca410a44f2b79c41a74e6f98f5feb42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSphere: {fileID: 1541789085}
-  sphere: {fileID: 1541789081}
-  size: {x: 20, y: 20, z: 20}
-  isXAxisLooped: 1
-  isYAxisLooped: 1
-  isZAxisLooped: 1
-  scalefactor: 1
-  largerGrid: 5
-  largerGridSizeFactor: 10
 --- !u!64 &1693030538
 MeshCollider:
   m_ObjectHideFlags: 0
