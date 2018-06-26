@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Script for VR-Gaze to get a better awareness of own position
 public class SnakeGaze : MonoBehaviour
 {
     private Vector3[] values = new Vector3[2];
@@ -11,6 +12,7 @@ public class SnakeGaze : MonoBehaviour
     private Vector3 headPosition;
     private Quaternion headRotation;
     private Vector3 gazeDirection;
+
 
     private Vector3 oldOffset = new Vector3(0, 0, 0);
 
@@ -23,9 +25,9 @@ public class SnakeGaze : MonoBehaviour
     {
         transform.rotation = cam.transform.rotation;
         transform.position = cam.transform.position;
-        transform.Translate(Vector3.forward * 30);
+        transform.Translate(Vector3.forward * VariableManager.instance.gazeLength);
         headPosition = cam.gameObject.transform.position;
-        headPosition.y = headPosition.y - 0.25f;
+        headPosition.y = headPosition.y - VariableManager.instance.correctGazeYPosition;
         values[0] = headPosition;
         values[1] = transform.position;
         line.SetPositions(values);

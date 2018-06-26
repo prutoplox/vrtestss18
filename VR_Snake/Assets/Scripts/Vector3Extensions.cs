@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+//Script for better Vector processing
 static class Vector3Extensions
 {
-
     public static Vector3 getRandomVector()
     {
         return new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
@@ -65,21 +65,21 @@ static class Vector3Extensions
             switch (leftGridVia)
             {
                 case 1:
-                    Debug.Log("Left the grid on the x axis");
+                    //Debug.Log("Left the grid on the x axis");
                     if (!VariableManager.instance.isXAxisLooped)
                     {
                         return true;
                     }
                     break;
                 case 2:
-                    Debug.Log("Left the grid on the y axis");
+                    //Debug.Log("Left the grid on the y axis");
                     if (!VariableManager.instance.isYAxisLooped)
                     {
                         return true;
                     }
                     break;
                 case 3:
-                    Debug.Log("Left the grid on the z axis");
+                    //Debug.Log("Left the grid on the z axis");
                     if (!VariableManager.instance.isZAxisLooped)
                     {
                         return true;

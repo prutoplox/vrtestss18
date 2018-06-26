@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Script for Controlling the Snake with Keyboard
 public class MovementKeyboard : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
     void Update()
     {
         if (VariableManager.instance.useKeyboard)

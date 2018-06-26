@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//Script for creating a camera and snake with smooth movement
 public class DebugShowPosition : MonoBehaviour {
 
     MovementSnake snake;
-    GameObject cam;
-	// Use this for initialization
+    public GameObject cam;
+
 	void Start () {
          snake = FindObjectsOfType<MovementSnake>()[0];
-         cam = GameObject.Find("TestCameraParent");
 
          GetPositionsFromSnake();
 	}

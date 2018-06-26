@@ -5,20 +5,21 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.WSA;
 
+//Script for controlling the snake with the VR-Headset's position/rotation
 public class MovementSnakeVR : MonoBehaviour
 {
-    const float moveRate = 2.0f;
-    float timeLeft =  moveRate;
+   
+    float timeLeft =  VariableManager.instance.timeBetweenChangeDirection;
 
     public void Update()
     {
         if (VariableManager.instance.useVRBasic)
         {
-            Debug.Log((InputTracking.GetLocalRotation(XRNode.Head)).ToString());
+            //Debug.Log((InputTracking.GetLocalRotation(XRNode.Head)).ToString());
             if (timeLeft <= 0)
             {
                 changeDirection();
-                timeLeft = moveRate;
+                timeLeft = VariableManager.instance.timeBetweenChangeDirection;
             }
             timeLeft -= Time.deltaTime;
         }
@@ -26,37 +27,21 @@ public class MovementSnakeVR : MonoBehaviour
 
     private void changeDirection()
     {
-        if (InputTracking.GetLocalRotation(XRNode.Head).x > 0.1)
+        if (InputTracking.GetLocalRotation(XRNode.Head).x > VariableManager.instance.sensitivityVertical)
         {
             MovementSnake.instance.rotateDown();
         }
-        else if (InputTracking.GetLocalRotation(XRNode.Head).x < -0.1)
+        else if (InputTracking.GetLocalRotation(XRNode.Head).x < -VariableManager.instance.sensitivityVertical)
         {
             MovementSnake.instance.rotateUp();
         }
-        if (InputTracking.GetLocalRotation(XRNode.Head).y > 0.3)
+        if (InputTracking.GetLocalRotation(XRNode.Head).y > VariableManager.instance.sensitivityHorizontal)
         {
             MovementSnake.instance.rotateRight();
         }
-        else if (InputTracking.GetLocalRotation(XRNode.Head).y < -0.3)
-        {
-            
+        else if (InputTracking.GetLocalRotation(XRNode.Head).y < -VariableManager.instance.sensitivityHorizontal)
+        {   
             MovementSnake.instance.rotateLeft();
         }
-        /* TODO Use Controller because of %§$$%%&
-        if (InputTracking.GetLocalRotation(XRNode.Head).z > 0.05)
-        {
-            MovementSnake.instance.rotateViewCounterClockwise();
-        }
-        else if (InputTracking.GetLocalRotation(XRNode.Head).z < -0.05)
-        {
-            MovementSnake.instance.rotateViewClockwise();
-        }
-        */
-    }
-
-    public void Start()
-    {
-        
     }
 }
