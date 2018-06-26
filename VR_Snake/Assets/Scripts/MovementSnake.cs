@@ -97,6 +97,13 @@ public class MovementSnake : MonoBehaviour {
         headTurning = modulo(headTurning, new Vector3(360, 360, 360));
         this.transform.Rotate(rotation);
     }
+    
+    public void setRotation(Vector3 newOrientation)
+    {
+        //TODO make sure the new relative rotation is as wanted
+        //Want to set sR[0] so that it rotates the preview orientation to the wanted one.
+        snakeRotations[0] = newOrientation - snake[0].transform.rotation.eulerAngles;
+    }
 
     // Update is called once per frame
     void Update()

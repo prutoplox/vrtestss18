@@ -9,6 +9,7 @@ public class VariableManager : MonoBehaviour{
     //public Variables here
     //Controller Variables
     public bool useVRBasic;
+    public bool useVR360persistent;
     public bool useKeyboard;
     public bool useVRAdvanced;
     public bool useExperimental;
@@ -23,6 +24,7 @@ public class VariableManager : MonoBehaviour{
         useKeyboard = true;
         useVRAdvanced = false;
         useVRBasic = false;
+        useVR360persistent = false
         hasWon = false;
         hasLost = false;
     }
