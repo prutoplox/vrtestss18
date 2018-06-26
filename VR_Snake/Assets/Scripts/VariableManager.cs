@@ -24,7 +24,7 @@ public class VariableManager : MonoBehaviour{
         useKeyboard = true;
         useVRAdvanced = false;
         useVRBasic = false;
-        useVR360persistent = false
+        useVR360persistent = false;
         hasWon = false;
         hasLost = false;
     }
