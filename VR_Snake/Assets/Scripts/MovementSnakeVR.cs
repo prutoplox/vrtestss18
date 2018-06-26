@@ -7,20 +7,6 @@ using UnityEngine.XR.WSA;
 
 public class MovementSnakeVR : MonoBehaviour
 {
-    enum Orientation
-    {
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST,
-        UP,
-        DOWN
-    }
-
-
-
-    Quaternion rotationOffset = Quaternion.identity;
-    Vector3 positionOffset = Vector3.one;
     const float moveRate = 2.0f;
     float timeLeft =  moveRate;
 
