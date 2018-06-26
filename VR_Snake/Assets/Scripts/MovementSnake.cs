@@ -94,7 +94,7 @@ public class MovementSnake : MonoBehaviour {
     private void rotateView(Vector3 rotation)
     {
         headTurning += rotation;
-        headTurning = modulo(headTurning, new Vector3(360, 360, 360));
+        headTurning = headTurning.modulo(new Vector3(360, 360, 360));
         this.transform.Rotate(rotation);
     }
     
@@ -147,20 +147,23 @@ public class MovementSnake : MonoBehaviour {
             snake[i].transform.Rotate(snakeRotations[i]);
             //dann Bewegung 
             snake[i].transform.Translate(Vector3.forward);
-            snake[i].transform.position = floorComponents(snake[i].transform.position) + new Vector3(0.5f,0.5f,0.5f);
-            
+            snake[i].transform.position = snake[i].transform.position.floorComponents() + new Vector3(0.5f,0.5f,0.5f);
+
             //prüfen, ob der Spielbereich verlassen wurde und ggf loop auf die andere Seite
-            bool hasLeftArea = checkIfAreaLeftAndFixPosition(snake[i].transform);
-            
+            Vector3 newPosition;
+            bool hasLeftArea = snake[i].transform.position.checkIfAreaLeftAndReturnNewPosition(out newPosition);
+            snake[i].transform.position = newPosition;
+
+
             //lose when the head has left the area
-            if(hasLeftArea && i == 0)
+            if (hasLeftArea && i == 0)
             {
                 VariableManager.instance.hasLost = true;
             }
         }
 
         //prüfen, ob das Futter erreicht wurde
-        if (isInSameCell(food.transform.position, transform.position))
+        if (food.transform.position.isInSameCell(transform.position))
         {
             MoveFoodToNewLocation();
             GrowSnake();
@@ -215,96 +218,12 @@ public class MovementSnake : MonoBehaviour {
     {
 
         //Get a random position
-        Vector3 newFoodPostion = getRandomVector();
+        Vector3 newFoodPostion = Vector3Extensions.getRandomVector();
         //Make it fit the entire grid
-        newFoodPostion.Scale(CreateMap.instance.size);
+        newFoodPostion.Scale(VariableManager.instance.mapSize);
         //mvoe the food on the edges of the grid
-        food.transform.position = floorComponents(newFoodPostion);
+        food.transform.position = newFoodPostion.floorComponents();
         //move it right into the middle of a block in the grid
         food.transform.Translate(new Vector3(0.5f, 0.5f, 0.5f));
-    }
-
-    private Vector3 getRandomVector()
-    {
-        return new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
-    }
-
-    private Vector3 floorComponents(Vector3 old)
-    {
-        return new Vector3((float)Math.Floor(old.x), (float)Math.Floor(old.y), (float)Math.Floor(old.z));
-    }
-
-    private int isInside(Vector3 toBeChecked, Vector3 cage)
-    {
-        if (toBeChecked.x < 0 || toBeChecked.x >= cage.x)
-        {
-            return 1;
-        }
-        if (toBeChecked.y < 0 || toBeChecked.y >= cage.y)
-        {
-            return 2;
-        }
-        if (toBeChecked.z < 0 || toBeChecked.z >= cage.z)
-        {
-            return 3;
-        }
-        return 0;
-    }
-    private Vector3 modulo(Vector3 vectorToBeFitted, Vector3 cage)
-    {
-        return new Vector3((vectorToBeFitted.x + cage.x) % cage.x, (vectorToBeFitted.y + cage.y) % cage.y, (vectorToBeFitted.z + cage.z) % cage.z);
-    }
-
-    private bool isInSameCell(Vector3 a, Vector3 b)
-    {
-        if (Math.Floor(a.x) != Math.Floor(b.x))
-        {
-            return false;
-        }
-        if (Math.Floor(a.y) != Math.Floor(b.y))
-        {
-            return false;
-        }
-        if (Math.Floor(a.z) != Math.Floor(b.z))
-        {
-            return false;
-        }
-        return true;
-    }
-
-    private bool checkIfAreaLeftAndFixPosition(Transform toCheck)
-    {
-        int leftGridVia = isInside(toCheck.position, CreateMap.instance.size);
-        if (leftGridVia != 0)
-        {
-            switch (leftGridVia)
-            {
-                case 1:
-                    Debug.Log("Left the grid on the x axis");
-                    if (!CreateMap.instance.isXAxisLooped)
-                    {
-                        return true;
-                    }
-                    break;
-                case 2:
-                    Debug.Log("Left the grid on the y axis");
-                    if (!CreateMap.instance.isYAxisLooped)
-                    {
-                        return true;
-                    }
-                    break;
-                case 3:
-                    Debug.Log("Left the grid on the z axis");
-                    if (!CreateMap.instance.isZAxisLooped)
-                    {
-                        return true;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            toCheck.position = modulo(toCheck.position, CreateMap.instance.size);
-        }
-        return false;
     }
 }
