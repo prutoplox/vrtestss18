@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.WSA;
 
+//Script for alternative movement
 public class MovementVR360Persistent : MonoBehaviour {
 
     Vector3 previousRotation = new Vector3(0,0,0);

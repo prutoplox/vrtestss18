@@ -13,7 +13,6 @@ public class MovementSnake : MonoBehaviour {
     public GameObject snakeBodyPart;
 
     private int msInCurrentStep;
-    public int msPerTick;
     public float progressInStep;
     public bool hasUpdated;
 
@@ -110,7 +109,7 @@ public class MovementSnake : MonoBehaviour {
     {
         hasUpdated = false;
         UpdatePosition((int)(Time.deltaTime * 1000));
-        progressInStep = (float)msInCurrentStep / msPerTick;
+        progressInStep = (float)msInCurrentStep / VariableManager.instance.msPerMovementOfSnake;
     }
 
     public int UpdatePosition(int msSinceLastCall)
@@ -118,11 +117,11 @@ public class MovementSnake : MonoBehaviour {
         //Für stabile Updaterate
         int numberTicksDone = 0;
         msInCurrentStep += msSinceLastCall;
-        while (msInCurrentStep >= msPerTick)
+        while (msInCurrentStep >= VariableManager.instance.msPerMovementOfSnake)
         {
             UpdatePosition();
             numberTicksDone++;
-            msInCurrentStep -= msPerTick;
+            msInCurrentStep -= VariableManager.instance.msPerMovementOfSnake;
         }
         return numberTicksDone;
     }
