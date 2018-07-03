@@ -17,6 +17,7 @@ public class VariableManager : MonoBehaviour{
     public bool useExperimental;
     public bool useVRControllerBasic;
     public bool useVRControllerBasicButtons;
+    public bool useRotationControl;
     //Win/Lose conditions
     public bool hasWon;
     public bool hasLost;
@@ -44,12 +45,13 @@ public class VariableManager : MonoBehaviour{
         instance = this;
 
         useExperimental = false;
-        useKeyboard = false;
+        useKeyboard = true;
         useVRAdvanced = false;
         useVRBasic = false;
         useVR360persistent = false;
-        useVRControllerBasic = true;
-        useVRControllerBasicButtons = true;
+        useVRControllerBasic = false;
+        useVRControllerBasicButtons = false;
+        useRotationControl = false;
 
 
         hasWon = false;

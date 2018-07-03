@@ -29,12 +29,12 @@ public class MovementKeyboard : MonoBehaviour {
                 //Debug.Log("right");
                 MovementSnake.instance.rotateRight();
             }
-            else if (Input.GetKeyDown(KeyCode.Q))
+            else if (Input.GetKeyDown(KeyCode.Q) && VariableManager.instance.useRotationControl)
             {
                 //Debug.Log("right");
                 MovementSnake.instance.rotateViewClockwise();
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+            else if (Input.GetKeyDown(KeyCode.E) && VariableManager.instance.useRotationControl)
             {
                 //Debug.Log("right");
                 MovementSnake.instance.rotateViewCounterClockwise();
