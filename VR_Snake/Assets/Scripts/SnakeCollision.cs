@@ -10,6 +10,7 @@ public class SnakeCollision : MonoBehaviour {
         if (other.gameObject.tag == "Body")
         {
             Debug.Log("Bodycollision :" + other.ToString());
+            MovementSnake.instance.CollsionWall();
         }
         else if (other.gameObject.tag == "Level")
         {

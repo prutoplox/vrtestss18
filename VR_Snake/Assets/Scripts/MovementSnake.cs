@@ -13,11 +13,24 @@ public class MovementSnake : MonoBehaviour {
     public GameObject snakeBodyPart;
 
     private int msInCurrentStep;
-    public float progressInStep;
     public bool hasUpdated;
+    public bool isPaused;
 
     private List<Vector3> snakeRotations;
     private Vector3 headTurning;
+
+
+    public float progressInStep
+    {
+        get
+        {
+            if(VariableManager.instance.hasLost || VariableManager.instance.hasWon)
+            {
+                return 0;
+            }
+            return (float)msInCurrentStep / VariableManager.instance.msPerMovementOfSnake;
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -25,6 +38,7 @@ public class MovementSnake : MonoBehaviour {
         instance = this;
         //ignore what was set in the unity editor
         hasUpdated = true;
+        isPaused = false;
 
         //Check if everything needed is correctly assigned
         if (food == null || snakeHead == null || snakeBodyPart == null)
@@ -42,6 +56,46 @@ public class MovementSnake : MonoBehaviour {
 
     }
 
+    public void enterPause()
+    {
+        isPaused = true;
+    }
+
+    public void leavePause()
+    {
+        isPaused = false;
+        msInCurrentStep = 0;
+        hasUpdated = false;
+    }
+
+    public void togglePause()
+    {
+        if(isPaused)
+        {
+            leavePause();
+        }
+        else
+        {
+            enterPause();
+        }
+    }
+
+    public void CollsionWall()
+    {
+        if (VariableManager.instance.dieOnWallCollsion)
+        {
+            Debug.Log("Collided with the wall and died");
+            VariableManager.instance.hasLost = true;
+        }
+    }
+    public void CollsionBody()
+    {
+        if (VariableManager.instance.dieOnBodyCollsion)
+        {
+            Debug.Log("Collided with a part of the body and died");
+            VariableManager.instance.hasLost = true;
+        }
+    }
     public void Reset()
     {
         VariableManager.instance.hasWon = false;
@@ -109,7 +163,6 @@ public class MovementSnake : MonoBehaviour {
     {
         hasUpdated = false;
         UpdatePosition((int)(Time.deltaTime * 1000));
-        progressInStep = (float)msInCurrentStep / VariableManager.instance.msPerMovementOfSnake;
     }
 
     public int UpdatePosition(int msSinceLastCall)
@@ -157,7 +210,7 @@ public class MovementSnake : MonoBehaviour {
             //lose when the head has left the area
             if (hasLeftArea && i == 0)
             {
-                VariableManager.instance.hasLost = true;
+                CollsionWall();
             }
         }
 
