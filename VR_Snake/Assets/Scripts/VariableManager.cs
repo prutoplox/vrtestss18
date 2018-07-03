@@ -35,6 +35,8 @@ public class VariableManager : MonoBehaviour{
     public float sensitivityVertical;
     //MovementSnake(Logic)
     public int msPerMovementOfSnake;
+    public bool dieOnBodyCollsion;
+    public bool dieOnWallCollsion;
     //SnakeGaze
     public float gazeLength;
     public float correctGazeYPosition;
@@ -54,10 +56,12 @@ public class VariableManager : MonoBehaviour{
 
         hasWon = false;
         hasLost = false;
-        isXAxisLooped = true;
-        isYAxisLooped = true;
-        isZAxisLooped = true;
+        isXAxisLooped = false;
+        isYAxisLooped = false;
+        isZAxisLooped = false;
         msPerMovementOfSnake = 500;
+        dieOnBodyCollsion = true;
+        dieOnWallCollsion = true;
         timeBetweenChangeDirection = 2.0f;
         sensitivityHorizontal = 0.3f;
         sensitivityVertical = 0.1f;
