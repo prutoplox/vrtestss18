@@ -37,6 +37,13 @@ public class DebugShowPosition : MonoBehaviour {
 
         if (oldPositions != null)
         {
+            //the following condition is true iff there was a reset
+            if(newPositions.Length < oldPositions.Length)
+            {
+                firstLoop = true;
+                return;
+            }
+
             float progressMovement = Math.Min(snake.progressInStep * 2, 1);
             float progressRotation = progressMovement;
 

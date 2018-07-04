@@ -33,12 +33,10 @@ public class MovementSnake : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         instance = this;
-        //ignore what was set in the unity editor
-        hasUpdated = true;
-        isPaused = false;
 
         //Check if everything needed is correctly assigned
         if (food == null || snakeHead == null || snakeBodyPart == null)
@@ -48,12 +46,7 @@ public class MovementSnake : MonoBehaviour {
 
         Reset();
 
-        //Testing
-        GrowSnake();
-        GrowSnake();
         UpdatePosition();
-
-
     }
 
     public void enterPause()
@@ -98,6 +91,24 @@ public class MovementSnake : MonoBehaviour {
     }
     public void Reset()
     {
+        //Tear down old data if there is some
+        if(snake != null)
+        {
+            /*
+             * We don't destroy the first two elements since we still need them to build up a new snake(head and a body "template").
+             * All the remaining elements are generated ones which can safely be removed
+             */
+            for(int i = 2; i < snake.Count; i++)
+            {
+                Destroy(snake[i]);
+            }
+        }
+
+
+        //ignore what was set in the unity editor
+        hasUpdated = true;
+        isPaused = false;
+
         VariableManager.instance.hasWon = false;
         VariableManager.instance.hasLost = false;
         msInCurrentStep = 0;
@@ -108,6 +119,12 @@ public class MovementSnake : MonoBehaviour {
         snakeRotations.Add(Vector3.zero);
         snakeRotations.Add(Vector3.zero);
         headTurning = Vector3.zero;
+
+        for (int i = 0; i < VariableManager.instance.initalLength; i++)
+        {
+            GrowSnake();
+        }
+
         MoveFoodToNewLocation();
     }
 
