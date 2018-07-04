@@ -39,6 +39,11 @@ public class MovementKeyboard : MonoBehaviour {
                 //Debug.Log("right");
                 MovementSnake.instance.rotateViewCounterClockwise();
             }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                //Debug.Log("reset");
+                MovementSnake.instance.Reset();
+            }
         }
     }
 }
