@@ -46,10 +46,12 @@ public class VariableManager : MonoBehaviour{
     public float gazeLength;
     public float correctGazeYPosition;
 
-    public void Start()
+    /*
+     * Force that the correct values are accessible each and every time 
+     * and not depending on the order when the start() was called.
+     */
+    public VariableManager()
     {
-        instance = this;
-
         useExperimental = false;
         useKeyboard = true;
         useVRAdvanced = false;
