@@ -109,6 +109,16 @@ public class MovementSnake : MonoBehaviour {
         hasUpdated = true;
         isPaused = false;
 
+        //Move the head to the inital postion, offsetting by 0.5f is needed to move it into the middle of a cell, the borders of cells are always at x.0
+        snakeHead.transform.position = VariableManager.instance.initalPositionHead + new Vector3(0.5f,0.5f,0.5f);
+        snakeHead.transform.rotation = VariableManager.instance.initalRotation;
+
+        snakeBodyPart.transform.position = VariableManager.instance.initalPositionHead + new Vector3(0.5f, 0.5f, 0.5f);
+        snakeBodyPart.transform.rotation = VariableManager.instance.initalRotation;
+        snakeBodyPart.transform.Translate(Vector3.back);
+        Debug.Log("Moved the headto the inital position of " + VariableManager.instance.initalPositionHead.ToString());
+
+
         VariableManager.instance.hasWon = false;
         VariableManager.instance.hasLost = false;
         msInCurrentStep = 0;

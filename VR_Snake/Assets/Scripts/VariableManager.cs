@@ -39,6 +39,9 @@ public class VariableManager : MonoBehaviour{
     public bool dieOnBodyCollsion;
     public bool dieOnWallCollsion;
     public int initalLength;
+    public Vector3 initalPositionHead;
+    public Quaternion initalRotation;
+
     //SnakeGaze
     public float gazeLength;
     public float correctGazeYPosition;
@@ -57,23 +60,27 @@ public class VariableManager : MonoBehaviour{
         useRotationControl = false;
 
 
-        hasWon = false;
-        hasLost = false;
-        isXAxisLooped = false;
-        isYAxisLooped = false;
-        isZAxisLooped = false;
-        msPerMovementOfSnake = 500;
-        dieOnBodyCollsion = true;
-        dieOnWallCollsion = true;
-        initalLength = 5;
         timeBetweenChangeDirection = 2.0f;
         sensitivityHorizontal = 0.3f;
         sensitivityVertical = 0.1f;
         correctGazeYPosition = 0.25f;
         gazeLength = 30f;
+        
         mapSize = new Vector3(20, 20, 20);
         largerGrid = 5;
         largerGridSizeFactor = 5f;
+        isXAxisLooped = false;
+        isYAxisLooped = false;
+        isZAxisLooped = false;
+
+        hasWon = false;
+        hasLost = false;
+        msPerMovementOfSnake = 500;
+        dieOnBodyCollsion = true;
+        dieOnWallCollsion = true;
+        initalLength = 5;
+        initalPositionHead = new Vector3(mapSize.x / 2, mapSize.y / 2, 0);
+        initalRotation = Quaternion.Euler(Vector3.zero);
     }
 
     //public Methods here
