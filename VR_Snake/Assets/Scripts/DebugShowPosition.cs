@@ -59,6 +59,11 @@ public class DebugShowPosition : MonoBehaviour {
             LineRenderer line = GetComponent<LineRenderer>();
             line.positionCount = currentPos.Length;
             line.SetPositions(currentPos);
+
+            CapsuleRenderer capsule = GetComponent<CapsuleRenderer>();
+            capsule.PositionCount = currentPos.Length;
+            capsule.SetPositions(currentPos);
+
             cam.transform.position = currentPos[0];
             cam.transform.rotation = currentRotation;
         }
