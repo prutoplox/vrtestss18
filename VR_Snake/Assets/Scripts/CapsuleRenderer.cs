@@ -11,12 +11,18 @@ public class CapsuleRenderer : MonoBehaviour {
          */
     private Vector3[] positions = null;
 
-    private GameObject initalCapsule;
+    public GameObject initalCapsule;
 
-    private int positionCount = 0;
+    private int positionCount = 1;
 
     List<GameObject> capsules = new List<GameObject>();
 
+    public void Start()
+    {
+        Debug.Log(initalCapsule);
+        initalCapsule.transform.localScale = new Vector3(VariableManager.instance.snakeThicknessX, 1, VariableManager.instance.snakeThicknessZ);
+        capsules.Add(initalCapsule);
+    }
 
     public int PositionCount
     {
@@ -35,7 +41,7 @@ public class CapsuleRenderer : MonoBehaviour {
             // Set the unneeded capsules invisible
             if(value < capsules.Count)
             {
-                for(int i= value; i < capsules.Count; i++)
+                for(int i = value - 1; i < capsules.Count; i++)
                 {
                     capsules[i].GetComponent<MeshRenderer>().enabled = false;
                 }
@@ -43,24 +49,28 @@ public class CapsuleRenderer : MonoBehaviour {
             // Set all in range visible and expand if needed
             else if (value > capsules.Count)
             {
-                for (int i = 0; i < capsules.Count; i++)
-                {
-                    capsules[i].GetComponent<MeshRenderer>().enabled = true;
-                }
                 for (int i = capsules.Count; i < value; i++)
                 {
-                    GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+                    //GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+                    GameObject capsule = Instantiate(initalCapsule);
                     capsules.Add(capsule);
-                    capsule.transform.localScale = new Vector3(0.9f, 1, 0.9f); 
+                    capsule.transform.localScale = new Vector3(VariableManager.instance.snakeThicknessX, 1, VariableManager.instance.snakeThicknessZ);
+
+                    Debug.Log(capsule);
                 }
             }
-
+            for (int i = 0; i < capsules.Count; i++)
+            {
+                capsules[i].GetComponent<MeshRenderer>().enabled = true;
+            }
+            Debug.Log("New length is " + value);
             positionCount = value;
         }
     }
 
     public void SetPositions(Vector3[] positions)
     {
+        Debug.Log("SetPosition:");
         if(positions.Length != positionCount)
         {
             Debug.LogWarning("The length does not match, PositionCount should be set before this method is called!");
@@ -69,6 +79,7 @@ public class CapsuleRenderer : MonoBehaviour {
 
         for(int i = 0; i < positionCount - 1;i++ )
         {
+            Debug.Log("Spanning element " + i + " from " + positions[i] + " to " + positions[i + 1]);
             SetPosition(capsules[i], positions[i], positions[i + 1]);
         }
 
@@ -82,7 +93,7 @@ public class CapsuleRenderer : MonoBehaviour {
 
         //Make it the right length
         Vector3 distance = end - start;
-        capsule.transform.localScale = new Vector3(capsule.transform.localScale.x, distance.magnitude * 0.9f, capsule.transform.localScale.z); 
+        capsule.transform.localScale = new Vector3(capsule.transform.localScale.x, distance.magnitude * VariableManager.instance.snakeThicknessX, capsule.transform.localScale.z); 
 
         //rotate it into place
         capsule.transform.LookAt(start);

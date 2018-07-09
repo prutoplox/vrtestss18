@@ -41,6 +41,9 @@ public class VariableManager : MonoBehaviour{
     public int initalLength;
     public Vector3 initalPositionHead;
     public Quaternion initalRotation;
+    //Snake 3D Object
+    public float snakeThicknessX;
+    public float snakeThicknessZ;
 
     //SnakeGaze
     public float gazeLength;
@@ -80,9 +83,12 @@ public class VariableManager : MonoBehaviour{
         msPerMovementOfSnake = 500;
         dieOnBodyCollsion = true;
         dieOnWallCollsion = true;
-        initalLength = 5;
+        initalLength = 2;
         initalPositionHead = new Vector3(mapSize.x / 2, mapSize.y / 2, 0);
         initalRotation = Quaternion.Euler(Vector3.zero);
+
+        snakeThicknessX = 0.6f;
+        snakeThicknessZ = snakeThicknessX;
     }
 
     //public Methods here
