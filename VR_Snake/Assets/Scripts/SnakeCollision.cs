@@ -22,7 +22,7 @@ public class SnakeCollision : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Other collision :" + other.ToString());
+            //Debug.Log("Other collision :" + other.ToString());
         }
     }
    

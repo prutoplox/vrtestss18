@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,57 +33,65 @@ public class CapsuleRenderer : MonoBehaviour {
         }
         set
         {
-            if(value < 0)
+            if (value == positionCount)
+            {
+                return;
+            }
+
+            if (value < 0)
             {
                 Debug.LogWarning("Must be at least of positive length");
                 return;
             }
+            //Debug.Log("setting from " + positionCount + " to " + value);
 
-            // Set the unneeded capsules invisible
-            if(value < capsules.Count)
+            // Set the unneeded capsules invisible, there are only positionCount-1 capsules needed to span positionCount positions
+            if (value < positionCount)
             {
-                for(int i = value - 1; i < capsules.Count; i++)
+                for (int i = value - 1; i < capsules.Count; i++)
                 {
                     capsules[i].GetComponent<MeshRenderer>().enabled = false;
+                    //Debug.Log("\tsetting " + i + " invisible");
                 }
             }
             // Set all in range visible and expand if needed
-            else if (value > capsules.Count)
+            else if (value > positionCount)
             {
-                for (int i = capsules.Count; i < value; i++)
+
+                for (int i = 0; i < Math.Min(value - 1, capsules.Count); i++)
+                {
+                    capsules[i].GetComponent<MeshRenderer>().enabled = true;
+                    //Debug.Log("\tsetting " + i + " visible");
+                }
+
+                for (int i = capsules.Count; i < value - 1; i++)
                 {
                     //GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
                     GameObject capsule = Instantiate(initalCapsule);
                     capsules.Add(capsule);
                     capsule.transform.localScale = new Vector3(VariableManager.instance.snakeThicknessX, 1, VariableManager.instance.snakeThicknessZ);
-
-                    Debug.Log(capsule);
+                    //Debug.Log("\tAdding new capsule");
                 }
             }
-            for (int i = 0; i < capsules.Count; i++)
-            {
-                capsules[i].GetComponent<MeshRenderer>().enabled = true;
-            }
-            Debug.Log("New length is " + value);
+            //Debug.Log("New length is " + value);
             positionCount = value;
         }
     }
 
     public void SetPositions(Vector3[] positions)
     {
-        Debug.Log("SetPosition:");
-        if(positions.Length != positionCount)
+        //Debug.Log("SetPosition:");
+        if (positions.Length != positionCount)
         {
             Debug.LogWarning("The length does not match, PositionCount should be set before this method is called!");
             return;
         }
 
-        for(int i = 0; i < positionCount - 1;i++ )
+        for (int i = 0; i < positionCount - 1; i++)
         {
-            Debug.Log("Spanning element " + i + " from " + positions[i] + " to " + positions[i + 1]);
+            //Debug.Log("Spanning element " + i + " from " + positions[i] + " to " + positions[i + 1]);
             SetPosition(capsules[i], positions[i], positions[i + 1]);
         }
-
     }
 
     private void SetPosition(GameObject capsule, Vector3 start, Vector3 end)
