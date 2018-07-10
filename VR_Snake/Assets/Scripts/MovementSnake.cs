@@ -107,7 +107,6 @@ public class MovementSnake : MonoBehaviour {
 
         //ignore what was set in the unity editor
         hasUpdated = true;
-        isPaused = false;
 
         //Move the head to the inital postion, offsetting by 0.5f is needed to move it into the middle of a cell, the borders of cells are always at x.0
         snakeHead.transform.position = VariableManager.instance.initalPositionHead + new Vector3(0.5f,0.5f,0.5f);

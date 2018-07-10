@@ -48,6 +48,18 @@ public class VariableManager : MonoBehaviour{
     //SnakeGaze
     public float gazeLength;
     public float correctGazeYPosition;
+    //User Interface/Menu
+    public bool startGame;
+    //cams
+    public bool maincam;
+    public bool menucam;
+    //
+    public bool showMainMenu;
+    public bool showHighscore;
+    public bool showGameOver;
+    public bool showOptions;
+    public bool showPause;
+
 
     /*
      * Force that the correct values are accessible each and every time 
@@ -63,6 +75,7 @@ public class VariableManager : MonoBehaviour{
         useVRControllerBasic = false;
         useVRControllerBasicButtons = false;
         useRotationControl = false;
+    
 
 
         timeBetweenChangeDirection = 2.0f;
@@ -89,6 +102,13 @@ public class VariableManager : MonoBehaviour{
 
         snakeThicknessX = 0.6f;
         snakeThicknessZ = snakeThicknessX;
+
+        startGame = false;
+        showMainMenu = true;
+        showHighscore = false;
+        showGameOver = false;
+        showOptions = false;
+        showPause = false;
     }
 
     //public Methods here
