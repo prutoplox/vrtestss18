@@ -2077,6 +2077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4dbeb48edf468b48994de1d356c6161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDebug: 1
   useVRBasic: 0
   useVR360persistent: 0
   useKeyboard: 0
@@ -2103,6 +2104,7 @@ MonoBehaviour:
   initalLength: 5
   initalPositionHead: {x: 10, y: 10, z: 0}
   initalRotation: {x: 0, y: 0, z: 0, w: 1}
+  placeRandomFoodActive: 1
   snakeThicknessX: 0.9
   snakeThicknessZ: 0.9
   gazeLength: 0
@@ -2349,6 +2351,7 @@ GameObject:
   - component: {fileID: 1066270111}
   - component: {fileID: 1066270116}
   - component: {fileID: 1066270117}
+  - component: {fileID: 1066270118}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2541,6 +2544,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initalCapsule: {fileID: 710784726}
+--- !u!114 &1066270118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1066270110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086fae8ea605be247a19e58bbdf14bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 1
 --- !u!1 &1309203170
 GameObject:
   m_ObjectHideFlags: 0

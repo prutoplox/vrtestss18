@@ -189,6 +189,13 @@ public class MovementSnake : MonoBehaviour {
     void Update()
     {
         hasUpdated = false;
+
+        if (isPaused)
+        {
+            Debug.Log("Not moving since we're paused");
+            return;
+        }
+
         UpdatePosition((int)(Time.deltaTime * 1000));
     }
 
@@ -258,13 +265,29 @@ public class MovementSnake : MonoBehaviour {
         headTurning = Vector3.zero;
     }
 
-    private void GrowSnake()
+    public void GrowSnake()
     {
         GameObject newBody = Instantiate(snake[snake.Count - 1]);
         snake.Add(newBody);
         newBody.transform.Translate(Vector3.back);
         newBody.transform.Rotate(new Vector3(360, 360, 360) - snakeRotations[snakeRotations.Count - 1]);
         snakeRotations.Add(Vector3.forward);
+    }
+
+    public void ShrinkSnake()
+    {
+        if(snake.Count <= 2)
+        {
+            Debug.LogWarning("Can't shrink the snake, the minimal size is already reached!");
+            return;
+        }
+
+        GameObject bodyToDelete = snake[snake.Count - 1];
+
+        snake.RemoveAt(snake.Count - 1);
+        snakeRotations.RemoveAt(snakeRotations.Count - 1);
+
+        Destroy(bodyToDelete);
     }
 
     public int GetLength()
@@ -295,13 +318,23 @@ public class MovementSnake : MonoBehaviour {
 
     private void MoveFoodToNewLocation()
     {
+        if(!VariableManager.instance.placeRandomFoodActive)
+        {
+            Debug.Log("Skipping random placement");
+            return;
+        }
 
         //Get a random position
         Vector3 newFoodPostion = Vector3Extensions.getRandomVector();
         //Make it fit the entire grid
         newFoodPostion.Scale(VariableManager.instance.mapSize);
-        //mvoe the food on the edges of the grid
-        food.transform.position = newFoodPostion.floorComponents();
+        //move the food on the edges of the grid
+        MoveFoodToNewLocation(newFoodPostion.floorComponents());
+    }
+
+    public void MoveFoodToNewLocation(Vector3 newLocation)
+    {
+        food.transform.position = newLocation;
         //move it right into the middle of a block in the grid
         food.transform.Translate(new Vector3(0.5f, 0.5f, 0.5f));
     }

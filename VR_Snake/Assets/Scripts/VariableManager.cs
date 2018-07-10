@@ -9,6 +9,8 @@ public class VariableManager : MonoBehaviour{
     //Instance of the VariableManager (static)
     public static VariableManager instance = new VariableManager();
 
+    public bool isDebug;
+
     //Controller variables
     public bool useVRBasic;
     public bool useVR360persistent;
@@ -41,6 +43,7 @@ public class VariableManager : MonoBehaviour{
     public int initalLength;
     public Vector3 initalPositionHead;
     public Quaternion initalRotation;
+    public bool placeRandomFoodActive;
     //Snake 3D Object
     public float snakeThicknessX;
     public float snakeThicknessZ;
@@ -55,6 +58,8 @@ public class VariableManager : MonoBehaviour{
      */
     public VariableManager()
     {
+        isDebug = true;
+
         useExperimental = false;
         useKeyboard = true;
         useVRAdvanced = false;
@@ -86,6 +91,7 @@ public class VariableManager : MonoBehaviour{
         initalLength = 2;
         initalPositionHead = new Vector3(mapSize.x / 2, mapSize.y / 2, 0);
         initalRotation = Quaternion.Euler(Vector3.zero);
+        placeRandomFoodActive = true;
 
         snakeThicknessX = 0.6f;
         snakeThicknessZ = snakeThicknessX;

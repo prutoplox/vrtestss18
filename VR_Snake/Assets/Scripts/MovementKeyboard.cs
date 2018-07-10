@@ -44,6 +44,21 @@ public class MovementKeyboard : MonoBehaviour {
                 //Debug.Log("reset");
                 MovementSnake.instance.Reset();
             }
+            else if (Input.GetKeyDown(KeyCode.J) && VariableManager.instance.isDebug)
+            {
+                Debug.Log("grow");
+                MovementSnake.instance.GrowSnake();
+            }
+            else if (Input.GetKeyDown(KeyCode.K) && VariableManager.instance.isDebug)
+            {
+                Debug.Log("shrink");
+                MovementSnake.instance.ShrinkSnake();
+            }
+            else if (Input.GetKeyDown(KeyCode.P))
+            {
+                Debug.Log("toggle pause");
+                MovementSnake.instance.togglePause();
+            }
         }
     }
 }
