@@ -54,6 +54,11 @@ public class MovementKeyboard : MonoBehaviour {
                 Debug.Log("shrink");
                 MovementSnake.instance.ShrinkSnake();
             }
+            else if (Input.GetKeyDown(KeyCode.L) && VariableManager.instance.isDebug)
+            {
+                Debug.Log("toggle Autopilot");
+                SnakeAutopilot.instance.toggleAutopilot();
+            }
             else if (Input.GetKeyDown(KeyCode.P))
             {
                 Debug.Log("toggle pause");
