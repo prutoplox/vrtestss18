@@ -12,6 +12,7 @@ public class GameOver : MonoBehaviour {
         VariableManager.instance.showPause = false;
         VariableManager.instance.showHighscore = false;
         VariableManager.instance.showGameOver = true;
-
     }
+
+
 }

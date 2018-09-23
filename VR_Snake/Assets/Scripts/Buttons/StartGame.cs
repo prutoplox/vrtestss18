@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class StartGame : MonoBehaviour {
-
-    public Camera menucam;
-    public Camera maincam;
+public class StartGame : MonoBehaviour
+{
     public Button start;
 
     private bool switcher;
@@ -15,14 +13,13 @@ public class StartGame : MonoBehaviour {
     public void Start()
     {
         start.onClick.AddListener(startGame);
-        menucam.enabled = true;
-        maincam.enabled = false;
         switcher = false;
     }
 
     public void Update()
     {
-        if (switcher == true) {
+        if (switcher == true)
+        {
             initialiseStart();
             switcher = false;
         }
@@ -38,9 +35,8 @@ public class StartGame : MonoBehaviour {
     public void initialiseStart()
     {
         MovementSnake.instance.Reset();
-        menucam.enabled = false;
-        maincam.enabled = true;
+        AudioManager.instance.playGameMusic();
         VariableManager.instance.showMainMenu = false;
+        VariableManager.instance.startTime = Time.time;
     }
-
 }

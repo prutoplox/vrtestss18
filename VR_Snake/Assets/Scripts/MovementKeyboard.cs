@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Script for Controlling the Snake with Keyboard
-public class MovementKeyboard : MonoBehaviour {
-
+public class MovementKeyboard : MonoBehaviour
+{
     void Update()
     {
         if (VariableManager.instance.useKeyboard)

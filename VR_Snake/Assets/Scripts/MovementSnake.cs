@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementSnake : MonoBehaviour {
-
+public class MovementSnake : MonoBehaviour
+{
     public static MovementSnake instance;
 
     private List<GameObject> snake;
@@ -19,12 +19,11 @@ public class MovementSnake : MonoBehaviour {
     private List<Vector3> snakeRotations;
     private Vector3 headTurning;
 
-
     public float progressInStep
     {
         get
         {
-            if(VariableManager.instance.hasLost || VariableManager.instance.hasWon)
+            if (VariableManager.instance.hasLost || VariableManager.instance.hasWon)
             {
                 return 0;
             }
@@ -35,7 +34,6 @@ public class MovementSnake : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
         instance = this;
 
         //Check if everything needed is correctly assigned
@@ -63,7 +61,7 @@ public class MovementSnake : MonoBehaviour {
 
     public void togglePause()
     {
-        if(isPaused)
+        if (isPaused)
         {
             leavePause();
         }
@@ -77,46 +75,61 @@ public class MovementSnake : MonoBehaviour {
     {
         if (VariableManager.instance.dieOnWallCollsion)
         {
+            showOnlyGameOver();
+            VariableManager.instance.highScoreManager.setHighScore(VariableManager.instance.score);
+            VariableManager.instance.getHighScores();
             Debug.Log("Collided with the wall and died");
             VariableManager.instance.hasLost = true;
         }
     }
+
+    private static void showOnlyGameOver()
+    {
+        VariableManager.instance.startGame = false;
+        VariableManager.instance.showMainMenu = false;
+        VariableManager.instance.showHighscore = false;
+        VariableManager.instance.showOptions = false;
+        VariableManager.instance.showPause = false;
+        VariableManager.instance.showGameOver = true;
+    }
+
     public void CollsionBody()
     {
         if (VariableManager.instance.dieOnBodyCollsion)
         {
+            showOnlyGameOver();
+
             Debug.Log("Collided with a part of the body and died");
             VariableManager.instance.hasLost = true;
         }
     }
+
     public void Reset()
     {
         //Tear down old data if there is some
-        if(snake != null)
+        if (snake != null)
         {
             /*
              * We don't destroy the first two elements since we still need them to build up a new snake(head and a body "template").
              * All the remaining elements are generated ones which can safely be removed
              */
-            for(int i = 2; i < snake.Count; i++)
+            for (int i = 2; i < snake.Count; i++)
             {
                 Destroy(snake[i]);
             }
         }
 
-
         //ignore what was set in the unity editor
         hasUpdated = true;
 
         //Move the head to the inital postion, offsetting by 0.5f is needed to move it into the middle of a cell, the borders of cells are always at x.0
-        snakeHead.transform.position = VariableManager.instance.initalPositionHead + new Vector3(0.5f,0.5f,0.5f);
+        snakeHead.transform.position = VariableManager.instance.initalPositionHead + new Vector3(0.5f, 0.5f, 0.5f);
         snakeHead.transform.rotation = VariableManager.instance.initalRotation;
 
         snakeBodyPart.transform.position = VariableManager.instance.initalPositionHead + new Vector3(0.5f, 0.5f, 0.5f);
         snakeBodyPart.transform.rotation = VariableManager.instance.initalRotation;
         snakeBodyPart.transform.Translate(Vector3.back);
         Debug.Log("Moved the headto the inital position of " + VariableManager.instance.initalPositionHead.ToString());
-
 
         VariableManager.instance.hasWon = false;
         VariableManager.instance.hasLost = false;
@@ -165,6 +178,7 @@ public class MovementSnake : MonoBehaviour {
     {
         rotateView(new Vector3(0, 0, 90));
     }
+
     internal void rotateViewCounterClockwise()
     {
         rotateView(new Vector3(0, 0, -90));
@@ -176,7 +190,7 @@ public class MovementSnake : MonoBehaviour {
         headTurning = headTurning.modulo(new Vector3(360, 360, 360));
         this.transform.Rotate(rotation);
     }
-    
+
     public void setRotation(Vector3 newOrientation)
     {
         //TODO make sure the new relative rotation is as wanted
@@ -214,7 +228,7 @@ public class MovementSnake : MonoBehaviour {
 
     internal void UpdatePosition()
     {
-        if(VariableManager.instance.hasLost || VariableManager.instance.hasWon)
+        if (VariableManager.instance.hasLost || VariableManager.instance.hasWon)
         {
             Debug.Log("Trying to move while lost/won");
             return;
@@ -230,15 +244,15 @@ public class MovementSnake : MonoBehaviour {
         {
             //erst Rotation
             snake[i].transform.Rotate(snakeRotations[i]);
-            //dann Bewegung 
+
+            //dann Bewegung
             snake[i].transform.Translate(Vector3.forward);
-            snake[i].transform.position = snake[i].transform.position.floorComponents() + new Vector3(0.5f,0.5f,0.5f);
+            snake[i].transform.position = snake[i].transform.position.floorComponents() + new Vector3(0.5f, 0.5f, 0.5f);
 
             //prüfen, ob der Spielbereich verlassen wurde und ggf loop auf die andere Seite
             Vector3 newPosition;
             bool hasLeftArea = snake[i].transform.position.checkIfAreaLeftAndReturnNewPosition(out newPosition);
             snake[i].transform.position = newPosition;
-
 
             //lose when the head has left the area
             if (hasLeftArea && i == 0)
@@ -250,6 +264,8 @@ public class MovementSnake : MonoBehaviour {
         //prüfen, ob das Futter erreicht wurde
         if (food.transform.position.isInSameCell(transform.position))
         {
+            AudioManager.instance.playSnakeEat();
+            VariableManager.instance.eatPoints();
             MoveFoodToNewLocation();
             GrowSnake();
         }
@@ -275,7 +291,7 @@ public class MovementSnake : MonoBehaviour {
 
     public void ShrinkSnake()
     {
-        if(snake.Count <= 2)
+        if (snake.Count <= 2)
         {
             Debug.LogWarning("Can't shrink the snake, the minimal size is already reached!");
             return;
@@ -317,7 +333,7 @@ public class MovementSnake : MonoBehaviour {
 
     private void MoveFoodToNewLocation()
     {
-        if(!VariableManager.instance.placeRandomFoodActive)
+        if (!VariableManager.instance.placeRandomFoodActive)
         {
             Debug.Log("Skipping random placement");
             return;
@@ -325,8 +341,10 @@ public class MovementSnake : MonoBehaviour {
 
         //Get a random position
         Vector3 newFoodPostion = Vector3Extensions.getRandomVector();
+
         //Make it fit the entire grid
         newFoodPostion.Scale(VariableManager.instance.mapSize);
+
         //move the food on the edges of the grid
         MoveFoodToNewLocation(newFoodPostion.floorComponents());
     }
@@ -334,6 +352,7 @@ public class MovementSnake : MonoBehaviour {
     public void MoveFoodToNewLocation(Vector3 newLocation)
     {
         food.transform.position = newLocation;
+
         //move it right into the middle of a block in the grid
         food.transform.Translate(new Vector3(0.5f, 0.5f, 0.5f));
     }
