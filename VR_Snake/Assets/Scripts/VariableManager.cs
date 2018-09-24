@@ -106,21 +106,26 @@ public class VariableManager : MonoBehaviour
 
     //Grow
     public float powerUpGrowTimeMin;
-    public float powerUpGrowTimeMax;
-    //golden Apple
-    public float goldenAppleTimeMin;
-    public float goldenAppleTimeMax;
-    public float goldenApplePointMultiplier;
-    //mulit apple    
-    public float multiAppleTimeMin;
-    public float multiAppleTimeMax;
-    public float multiAppleExtraApples;
-    //row apple
-    public float rowAppleTimeMin;
-    public float rowAppleTimeMax;
-    public float rowAppleExtraApples;
 
     public float powerUpGrowTimeMax;
+
+    //golden Apple
+    public float goldenAppleTimeMin;
+
+    public float goldenAppleTimeMax;
+    public float goldenApplePointMultiplier;
+
+    //mulit apple
+    public float multiAppleTimeMin;
+
+    public float multiAppleTimeMax;
+    public float multiAppleExtraApples;
+
+    //row apple
+    public float rowAppleTimeMin;
+
+    public float rowAppleTimeMax;
+    public float rowAppleExtraApples;
 
     /*
      * Force that the correct values are accessible each and every time
@@ -177,24 +182,28 @@ public class VariableManager : MonoBehaviour
         showOptions = false;
         showPause = false;
 
-    //Shrink
-      powerUpShrinkTimeMin = 40;
-      powerUpShrinkTimeMax = 45;
-    //Grow
-      powerUpGrowTimeMin = 50;
-      powerUpGrowTimeMax = 60;
-    //golden Apple
-      goldenAppleTimeMin = 20;
-      goldenAppleTimeMax = 30;
-      goldenApplePointMultiplier = 10;
-    //mulit apple    
-      multiAppleTimeMin = 20;
-      multiAppleTimeMax = 60;
-      multiAppleExtraApples = 5;
-    //row apple
-      rowAppleTimeMin = 40;
-      rowAppleTimeMax = 120;
-      rowAppleExtraApples = 3;
+        //Shrink
+        powerUpShrinkTimeMin = 40;
+        powerUpShrinkTimeMax = 45;
+
+        //Grow
+        powerUpGrowTimeMin = 50;
+        powerUpGrowTimeMax = 60;
+
+        //golden Apple
+        goldenAppleTimeMin = 20;
+        goldenAppleTimeMax = 30;
+        goldenApplePointMultiplier = 10;
+
+        //mulit apple
+        multiAppleTimeMin = 20;
+        multiAppleTimeMax = 60;
+        multiAppleExtraApples = 5;
+
+        //row apple
+        rowAppleTimeMin = 40;
+        rowAppleTimeMax = 120;
+        rowAppleExtraApples = 3;
     }
 
     public void getHighScores()
