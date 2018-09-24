@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : MonoBehaviour {
+public class Food : MonoBehaviour
+{
 
 
     public float respawnTimeMin;
@@ -18,23 +19,20 @@ public class Food : MonoBehaviour {
         ScheduleRespawn();
     }
 
-    void ScheduleRespawn()
+    public void ScheduleRespawn()
     {
         if (selfDestructOnUse)
         {
             Destroy(this);
         }
         timeTillRespawn = ((respawnTimeMax - respawnTimeMin) * UnityEngine.Random.value) + respawnTimeMin;
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).GetComponent<MeshRenderer>().enabled = false;
-        }
+        hideObject();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!transform.GetChild(0).GetComponent<MeshRenderer>().enabled)
+        if (!isVisible)
         {
             timeTillRespawn -= Time.deltaTime;
             if (timeTillRespawn <= 0)
@@ -44,7 +42,7 @@ public class Food : MonoBehaviour {
         }
     }
 
-    private void SpawnAtNewPosition()
+    public void SpawnAtNewPosition()
     {
         Vector3 newPosition = Vector3Extensions.getRandomVector();
         newPosition.Scale(VariableManager.instance.mapSize);
@@ -64,12 +62,31 @@ public class Food : MonoBehaviour {
         }
     }
 
+
+    private bool isVisible;
     public void MoveToLocation(Vector3 newPosition)
     {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).GetComponent<MeshRenderer>().enabled = true;
-        }
+        showObject();
         transform.position = newPosition;
+    }
+
+    void hideObject()
+    {
+        isVisible = false;
+        Renderer[] rs = GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in rs)
+        {
+            r.enabled = false;
+        }
+    }
+
+    void showObject()
+    {
+        isVisible = true;
+        Renderer[] rs = GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in rs)
+        {
+            r.enabled = true;
+        }
     }
 }

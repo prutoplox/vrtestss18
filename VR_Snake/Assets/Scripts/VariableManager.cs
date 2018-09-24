@@ -106,6 +106,19 @@ public class VariableManager : MonoBehaviour
 
     //Grow
     public float powerUpGrowTimeMin;
+    public float powerUpGrowTimeMax;
+    //golden Apple
+    public float goldenAppleTimeMin;
+    public float goldenAppleTimeMax;
+    public float goldenApplePointMultiplier;
+    //mulit apple    
+    public float multiAppleTimeMin;
+    public float multiAppleTimeMax;
+    public float multiAppleExtraApples;
+    //row apple
+    public float rowAppleTimeMin;
+    public float rowAppleTimeMax;
+    public float rowAppleExtraApples;
 
     public float powerUpGrowTimeMax;
 
@@ -135,7 +148,7 @@ public class VariableManager : MonoBehaviour
         gazeLength = 30f;
 
         foodTimeMin = 1;
-        foodTimeMax = 3;
+        foodTimeMax = 2;
 
         mapSize = new Vector3(20, 20, 20);
         largerGrid = 5;
@@ -164,10 +177,24 @@ public class VariableManager : MonoBehaviour
         showOptions = false;
         showPause = false;
 
-        powerUpShrinkTimeMin = 1;
-        powerUpShrinkTimeMax = 5;
-        powerUpGrowTimeMin = 1;
-        powerUpGrowTimeMax = 5;
+    //Shrink
+      powerUpShrinkTimeMin = 40;
+      powerUpShrinkTimeMax = 45;
+    //Grow
+      powerUpGrowTimeMin = 50;
+      powerUpGrowTimeMax = 60;
+    //golden Apple
+      goldenAppleTimeMin = 20;
+      goldenAppleTimeMax = 30;
+      goldenApplePointMultiplier = 10;
+    //mulit apple    
+      multiAppleTimeMin = 20;
+      multiAppleTimeMax = 60;
+      multiAppleExtraApples = 5;
+    //row apple
+      rowAppleTimeMin = 40;
+      rowAppleTimeMax = 120;
+      rowAppleExtraApples = 3;
     }
 
     public void getHighScores()
