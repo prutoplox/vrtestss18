@@ -31,7 +31,7 @@ public class PowerUpGoldenApple : MonoBehaviour
         }
     }
 
-    void ScheduleRespawn()
+    public void ScheduleRespawn()
     {
         timeTillRespawn = ((respawnTimeMax - respawnTimeMin) * UnityEngine.Random.value) + respawnTimeMin;
         hideObject();
@@ -59,13 +59,14 @@ public class PowerUpGoldenApple : MonoBehaviour
     }
 
     private bool isVisible;
+
     public void MoveToLocation(Vector3 newPosition)
     {
         showObject();
         transform.position = newPosition;
     }
 
-    void hideObject()
+    public void hideObject()
     {
         isVisible = false;
         Renderer[] rs = GetComponentsInChildren<Renderer>();

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PowerUpShrink : MonoBehaviour
 {
-
     public float respawnTimeMin;
     public float respawnTimeMax;
     private float timeTillRespawn;
@@ -17,7 +16,6 @@ public class PowerUpShrink : MonoBehaviour
         ScheduleRespawn();
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Snake")
@@ -28,7 +26,7 @@ public class PowerUpShrink : MonoBehaviour
         }
     }
 
-    void ScheduleRespawn()
+    public void ScheduleRespawn()
     {
         timeTillRespawn = ((respawnTimeMax - respawnTimeMin) * UnityEngine.Random.value) + respawnTimeMin;
         hideObject();
@@ -56,13 +54,14 @@ public class PowerUpShrink : MonoBehaviour
     }
 
     private bool isVisible;
+
     public void MoveToLocation(Vector3 newPosition)
     {
         showObject();
         transform.position = newPosition;
     }
 
-    void hideObject()
+    public void hideObject()
     {
         isVisible = false;
         Renderer[] rs = GetComponentsInChildren<Renderer>();
@@ -72,7 +71,7 @@ public class PowerUpShrink : MonoBehaviour
         }
     }
 
-    void showObject()
+    public void showObject()
     {
         isVisible = true;
         Renderer[] rs = GetComponentsInChildren<Renderer>();

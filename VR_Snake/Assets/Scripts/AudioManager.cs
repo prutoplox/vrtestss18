@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     public AudioSource sourceMain;
-    public AudioSource second;
+    public AudioSource sourceSecond;
     public AudioClip menuMusic;
     public AudioClip gameMusic;
     public AudioClip snakeEat;
@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public bool isRunning;
 
     // Use this for initialization
+
     void Start()
     {
         if (instance == null)
@@ -34,11 +35,11 @@ public class AudioManager : MonoBehaviour
             throw new System.Exception("Only one instance allowed");
         }
         sourceMain.GetComponent<AudioSource>();
-        second.GetComponent<AudioSource>();
+        sourceSecond.GetComponent<AudioSource>();
         volume = 1.0f;
         soundVolume = 1.0f;
         sourceMain.volume = volume;
-        second.volume = volume;
+        sourceSecond.volume = volume;
         isRunning = false;
     }
 
@@ -124,29 +125,29 @@ public class AudioManager : MonoBehaviour
     {
         sourceMain.volume = volume / 2;
         sourceMain.clip = gameMusic;
-        second.volume = soundVolume;
-        second.clip = highScoreMusic;
+        sourceSecond.volume = soundVolume;
+        sourceSecond.clip = highScoreMusic;
         sourceMain.Play();
-        second.Play();
+        sourceSecond.Play();
     }
 
     public void playGameOverSoundAndMusic()
     {
         sourceMain.volume = volume / 4;
         sourceMain.clip = gameMusic;
-        second.volume = soundVolume;
-        second.clip = gameOverMusic;
+        sourceSecond.volume = soundVolume;
+        sourceSecond.clip = gameOverMusic;
         sourceMain.Play();
-        second.Play();
+        sourceSecond.Play();
     }
 
     //Sounds
     public void playSnakeEat()
     {
-        second.volume = soundVolume;
-        second.clip = snakeEat;
-        second.loop = false;
-        second.Play();
+        sourceSecond.volume = soundVolume;
+        sourceSecond.clip = snakeEat;
+        sourceSecond.loop = false;
+        sourceSecond.Play();
     }
 
     public void playPowerUpSound(Vector3 powerUpTransform)
@@ -157,5 +158,7 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sourceMain.volume = volume;
+        sourceSecond.volume = volume;
     }
 }

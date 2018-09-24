@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpRowApple : MonoBehaviour {
-
+public class PowerUpRowApple : MonoBehaviour
+{
     public float respawnTimeMin;
     public float respawnTimeMax;
     private float timeTillRespawn;
@@ -15,6 +15,7 @@ public class PowerUpRowApple : MonoBehaviour {
         respawnTimeMax = VariableManager.instance.rowAppleTimeMax;
         ScheduleRespawn();
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Snake")
@@ -34,7 +35,7 @@ public class PowerUpRowApple : MonoBehaviour {
         }
     }
 
-    void ScheduleRespawn()
+    public void ScheduleRespawn()
     {
         timeTillRespawn = ((respawnTimeMax - respawnTimeMin) * UnityEngine.Random.value) + respawnTimeMin;
         hideObject();
@@ -62,13 +63,14 @@ public class PowerUpRowApple : MonoBehaviour {
     }
 
     private bool isVisible;
+
     public void MoveToLocation(Vector3 newPosition)
     {
         showObject();
         transform.position = newPosition;
     }
 
-    void hideObject()
+    public void hideObject()
     {
         isVisible = false;
         Renderer[] rs = GetComponentsInChildren<Renderer>();

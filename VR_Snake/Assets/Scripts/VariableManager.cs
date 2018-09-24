@@ -127,6 +127,11 @@ public class VariableManager : MonoBehaviour
     public float rowAppleTimeMax;
     public float rowAppleExtraApples;
 
+    //Options
+    public bool enablePowerUps;
+
+    public bool enableHardmode;
+    public bool enableUseVr;
     /*
      * Force that the correct values are accessible each and every time
      * and not depending on the order when the start() was called.
@@ -204,6 +209,90 @@ public class VariableManager : MonoBehaviour
         rowAppleTimeMin = 40;
         rowAppleTimeMax = 120;
         rowAppleExtraApples = 3;
+
+        //Options
+        enablePowerUps = false;
+        enableHardmode = false;
+        enableUseVr = false;
+    }
+
+    public void setUseVrOff()
+    {
+        enableUseVr = false;
+    }
+
+    public void setUseVrOn()
+    {
+        enableUseVr = true;
+    }
+
+    public void setHardModeOff()
+    {
+        enableHardmode = false;
+    }
+
+    public void setHardModeOn()
+    {
+        enableHardmode = true;
+    }
+
+    public void setPowerUpOn()
+    {
+        enablePowerUps = true;
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpGrow>())
+        {
+            item.ScheduleRespawn();
+        }
+
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpGoldenApple>())
+        {
+            item.ScheduleRespawn();
+        }
+
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpShrink>())
+        {
+            item.ScheduleRespawn();
+        }
+
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpMultiApple>())
+        {
+            item.ScheduleRespawn();
+        }
+
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpRowApple>())
+        {
+            item.ScheduleRespawn();
+        }
+    }
+
+    public void setPowerUpOff()
+    {
+        enablePowerUps = false;
+
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpGrow>())
+        {
+            item.hideObject();
+        }
+
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpGoldenApple>())
+        {
+            item.hideObject();
+        }
+
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpShrink>())
+        {
+            item.hideObject();
+        }
+
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpMultiApple>())
+        {
+            item.hideObject();
+        }
+
+        foreach (var item in UnityEngine.Object.FindObjectsOfType<PowerUpRowApple>())
+        {
+            item.hideObject();
+        }
     }
 
     public void getHighScores()

@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpGrow : MonoBehaviour {
-    
+public class PowerUpGrow : MonoBehaviour
+{
     public float respawnTimeMin;
     public float respawnTimeMax;
     private float timeTillRespawn;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         respawnTimeMin = VariableManager.instance.powerUpGrowTimeMin;
         respawnTimeMax = VariableManager.instance.powerUpGrowTimeMax;
         ScheduleRespawn();
-	}
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,7 +26,7 @@ public class PowerUpGrow : MonoBehaviour {
         }
     }
 
-    void ScheduleRespawn()
+    public void ScheduleRespawn()
     {
         timeTillRespawn = ((respawnTimeMax - respawnTimeMin) * UnityEngine.Random.value) + respawnTimeMin;
         hideObject();
@@ -53,13 +54,14 @@ public class PowerUpGrow : MonoBehaviour {
     }
 
     private bool isVisible;
+
     public void MoveToLocation(Vector3 newPosition)
     {
         showObject();
         transform.position = newPosition;
     }
 
-    void hideObject()
+    public void hideObject()
     {
         isVisible = false;
         Renderer[] rs = GetComponentsInChildren<Renderer>();

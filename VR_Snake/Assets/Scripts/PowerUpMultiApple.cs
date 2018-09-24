@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpMultiApple : MonoBehaviour {
-
+public class PowerUpMultiApple : MonoBehaviour
+{
     public float respawnTimeMin;
     public float respawnTimeMax;
     private float timeTillRespawn;
@@ -35,7 +35,7 @@ public class PowerUpMultiApple : MonoBehaviour {
         }
     }
 
-    void ScheduleRespawn()
+    public void ScheduleRespawn()
     {
         timeTillRespawn = ((respawnTimeMax - respawnTimeMin) * UnityEngine.Random.value) + respawnTimeMin;
         hideObject();
@@ -63,13 +63,14 @@ public class PowerUpMultiApple : MonoBehaviour {
     }
 
     private bool isVisible;
+
     public void MoveToLocation(Vector3 newPosition)
     {
         showObject();
         transform.position = newPosition;
     }
 
-    void hideObject()
+    public void hideObject()
     {
         isVisible = false;
         Renderer[] rs = GetComponentsInChildren<Renderer>();

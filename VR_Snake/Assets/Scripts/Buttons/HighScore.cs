@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class HighScore : MonoBehaviour
 {
     public Button highscore;
+    public Button highscore2;
 
     public Text place1;
     public Text place2;
@@ -26,6 +27,7 @@ public class HighScore : MonoBehaviour
     void Start()
     {
         highscore.onClick.AddListener(showHighscore);
+        highscore2.onClick.AddListener(showHighscore);
     }
 
     private void showHighscore()
@@ -55,7 +57,7 @@ public class HighScore : MonoBehaviour
             place4shadow.text = "4: \t" + scores[3];
             place5shadow.text = "5: \t" + scores[4];
         }
-        catch (Exception e)
+        catch (Exception)
         {
             Debug.Log("VariableManager not init");
         }
