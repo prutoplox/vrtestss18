@@ -8,7 +8,6 @@ public class MovementSnake : MonoBehaviour
     public static MovementSnake instance;
 
     private List<GameObject> snake;
-    public GameObject food;
     public GameObject snakeHead;
     public GameObject snakeBodyPart;
 
@@ -37,7 +36,7 @@ public class MovementSnake : MonoBehaviour
         instance = this;
 
         //Check if everything needed is correctly assigned
-        if (food == null || snakeHead == null || snakeBodyPart == null)
+        if (snakeHead == null || snakeBodyPart == null)
         {
             throw new MissingReferenceException();
         }
@@ -146,8 +145,6 @@ public class MovementSnake : MonoBehaviour
         {
             GrowSnake();
         }
-
-        MoveFoodToNewLocation();
     }
 
     internal void rotateRight()
@@ -261,15 +258,6 @@ public class MovementSnake : MonoBehaviour
             }
         }
 
-        //prüfen, ob das Futter erreicht wurde
-        if (food.transform.position.isInSameCell(transform.position))
-        {
-            AudioManager.instance.playSnakeEat();
-            VariableManager.instance.eatPoints();
-            MoveFoodToNewLocation();
-            GrowSnake();
-        }
-
         for (int i = snakeRotations.Count - 1; i > 0; i--)
         {
             snakeRotations[i] = snakeRotations[i - 1];
@@ -329,31 +317,5 @@ public class MovementSnake : MonoBehaviour
         if (index == 0)
             throw new IndexOutOfRangeException();
         return snake[index].transform;
-    }
-
-    private void MoveFoodToNewLocation()
-    {
-        if (!VariableManager.instance.placeRandomFoodActive)
-        {
-            Debug.Log("Skipping random placement");
-            return;
-        }
-
-        //Get a random position
-        Vector3 newFoodPostion = Vector3Extensions.getRandomVector();
-
-        //Make it fit the entire grid
-        newFoodPostion.Scale(VariableManager.instance.mapSize);
-
-        //move the food on the edges of the grid
-        MoveFoodToNewLocation(newFoodPostion.floorComponents());
-    }
-
-    public void MoveFoodToNewLocation(Vector3 newLocation)
-    {
-        food.transform.position = newLocation;
-
-        //move it right into the middle of a block in the grid
-        food.transform.Translate(new Vector3(0.5f, 0.5f, 0.5f));
     }
 }

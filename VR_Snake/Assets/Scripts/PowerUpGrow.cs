@@ -36,11 +36,9 @@ public class PowerUpGrow : MonoBehaviour {
     private void SpawnAtNewPosition()
     {
         transform.GetComponent<MeshRenderer>().enabled = true;
-        Vector3 newPostion = Vector3Extensions.getRandomVector();
-        newPostion.x *= VariableManager.instance.mapSize.x;
-        newPostion.y *= VariableManager.instance.mapSize.y;
-        newPostion.z *= VariableManager.instance.mapSize.z;
-        transform.position = newPostion.floorComponentsPlusPoint5();
+        Vector3 newPosition = Vector3Extensions.getRandomVector();
+        newPosition.Scale(VariableManager.instance.mapSize);
+        transform.position = newPosition.floorComponentsPlusPoint5();
     }
 
 

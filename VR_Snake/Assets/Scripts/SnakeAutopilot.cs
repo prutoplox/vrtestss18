@@ -140,7 +140,7 @@ public class SnakeAutopilot : MonoBehaviour {
         }
         if(pathNewFoodLocations[stepInAutopilot] != Vector3.back)
         {
-            snake.MoveFoodToNewLocation(pathNewFoodLocations[stepInAutopilot]);
+            UnityEngine.Object.FindObjectOfType<Food>().MoveToLocation(pathNewFoodLocations[stepInAutopilot]);
         }
 
         stepInAutopilot++;

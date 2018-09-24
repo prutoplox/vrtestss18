@@ -45,6 +45,10 @@ public class VariableManager : MonoBehaviour
     public float sensitivityHorizontal;
     public float sensitivityVertical;
 
+    //Food
+    public float foodTimeMin;
+    public float foodTimeMax;
+
     //MovementSnake(Logic)
     public int msPerMovementOfSnake;
 
@@ -127,6 +131,9 @@ public class VariableManager : MonoBehaviour
         sensitivityVertical = 0.1f;
         correctGazeYPosition = 0.25f;
         gazeLength = 30f;
+        
+        foodTimeMin = 1;
+        foodTimeMax = 3;
 
         mapSize = new Vector3(20, 20, 20);
         largerGrid = 5;
