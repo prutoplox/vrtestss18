@@ -8,6 +8,7 @@ public class Food : MonoBehaviour {
     public float respawnTimeMin;
     public float respawnTimeMax;
     private float timeTillRespawn;
+    public bool selfDestructOnUse;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,10 @@ public class Food : MonoBehaviour {
 
     void ScheduleRespawn()
     {
+        if (selfDestructOnUse)
+        {
+            Destroy(this);
+        }
         timeTillRespawn = ((respawnTimeMax - respawnTimeMin) * UnityEngine.Random.value) + respawnTimeMin;
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -52,10 +57,10 @@ public class Food : MonoBehaviour {
         if (other.gameObject.name == "Snake")
         {
             Debug.Log("Snake hit some food");
-            ScheduleRespawn();
             MovementSnake.instance.GrowSnake();
             AudioManager.instance.playSnakeEat();
             VariableManager.instance.eatPoints();
+            ScheduleRespawn();
         }
     }
 
