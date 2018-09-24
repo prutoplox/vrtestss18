@@ -7,12 +7,14 @@ using UnityEngine.EventSystems;
 public class StartGame : MonoBehaviour
 {
     public Button start;
+    public Button restart;
 
     private bool switcher;
 
     public void Start()
     {
         start.onClick.AddListener(startGame);
+        restart.onClick.AddListener(startGame);
         switcher = false;
     }
 
@@ -37,6 +39,7 @@ public class StartGame : MonoBehaviour
         MovementSnake.instance.Reset();
         AudioManager.instance.playGameMusic();
         VariableManager.instance.showMainMenu = false;
+        VariableManager.instance.showGameOver = false;
         VariableManager.instance.startTime = Time.time;
     }
 }

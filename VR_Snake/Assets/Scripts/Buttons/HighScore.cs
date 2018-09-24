@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +26,6 @@ public class HighScore : MonoBehaviour
     void Start()
     {
         highscore.onClick.AddListener(showHighscore);
-        setHighscoreToTextFields();
     }
 
     private void showHighscore()
@@ -40,17 +40,24 @@ public class HighScore : MonoBehaviour
 
     public void setHighscoreToTextFields()
     {
-        string[] scores = VariableManager.instance.highScoreManager.getTopFiveHighscoreAsArray();
-        place1.text = "1: \t" + scores[0];
-        place2.text = "2: \t" + scores[1];
-        place3.text = "3: \t" + scores[2];
-        place4.text = "4: \t" + scores[3];
-        place5.text = "5: \t" + scores[4];
+        try
+        {
+            string[] scores = VariableManager.instance.highScoreManager.getTopFiveHighscoreAsArray();
+            place1.text = "1: \t" + scores[0];
+            place2.text = "2: \t" + scores[1];
+            place3.text = "3: \t" + scores[2];
+            place4.text = "4: \t" + scores[3];
+            place5.text = "5: \t" + scores[4];
 
-        place1shadow.text = "1: \t" + scores[0];
-        place2shadow.text = "2: \t" + scores[1];
-        place3shadow.text = "3: \t" + scores[2];
-        place4shadow.text = "4: \t" + scores[3];
-        place5shadow.text = "5: \t" + scores[4];
+            place1shadow.text = "1: \t" + scores[0];
+            place2shadow.text = "2: \t" + scores[1];
+            place3shadow.text = "3: \t" + scores[2];
+            place4shadow.text = "4: \t" + scores[3];
+            place5shadow.text = "5: \t" + scores[4];
+        }
+        catch (Exception e)
+        {
+            Debug.Log("VariableManager not init");
+        }
     }
 }

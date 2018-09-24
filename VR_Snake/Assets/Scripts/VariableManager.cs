@@ -47,6 +47,7 @@ public class VariableManager : MonoBehaviour
 
     //Food
     public float foodTimeMin;
+
     public float foodTimeMax;
 
     //MovementSnake(Logic)
@@ -100,11 +101,13 @@ public class VariableManager : MonoBehaviour
     //Power Ups
     //Shrink
     public float powerUpShrinkTimeMin;
+
     public float powerUpShrinkTimeMax;
+
     //Grow
     public float powerUpGrowTimeMin;
-    public float powerUpGrowTimeMax;
 
+    public float powerUpGrowTimeMax;
 
     /*
      * Force that the correct values are accessible each and every time
@@ -114,7 +117,6 @@ public class VariableManager : MonoBehaviour
     public void Awake()
     {
         getHighScores();
-
         instance = this;
         isDebug = true;
         useExperimental = false;
@@ -131,7 +133,7 @@ public class VariableManager : MonoBehaviour
         sensitivityVertical = 0.1f;
         correctGazeYPosition = 0.25f;
         gazeLength = 30f;
-        
+
         foodTimeMin = 1;
         foodTimeMax = 3;
 
