@@ -93,6 +93,15 @@ public class VariableManager : MonoBehaviour
     public float place4;
     public float place5;
 
+    //Power Ups
+    //Shrink
+    public float powerUpShrinkTimeMin;
+    public float powerUpShrinkTimeMax;
+    //Grow
+    public float powerUpGrowTimeMin;
+    public float powerUpGrowTimeMax;
+
+
     /*
      * Force that the correct values are accessible each and every time
      * and not depending on the order when the start() was called.
@@ -145,6 +154,11 @@ public class VariableManager : MonoBehaviour
         showGameOver = false;
         showOptions = false;
         showPause = false;
+
+        powerUpShrinkTimeMin = 1;
+        powerUpShrinkTimeMax = 5;
+        powerUpGrowTimeMin = 1;
+        powerUpGrowTimeMax = 5;
     }
 
     public void getHighScores()

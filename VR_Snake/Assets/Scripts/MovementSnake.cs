@@ -247,7 +247,7 @@ public class MovementSnake : MonoBehaviour
 
             //dann Bewegung
             snake[i].transform.Translate(Vector3.forward);
-            snake[i].transform.position = snake[i].transform.position.floorComponents() + new Vector3(0.5f, 0.5f, 0.5f);
+            snake[i].transform.position = snake[i].transform.position.floorComponentsPlusPoint5();
 
             //prüfen, ob der Spielbereich verlassen wurde und ggf loop auf die andere Seite
             Vector3 newPosition;

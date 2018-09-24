@@ -17,6 +17,11 @@ static class Vector3Extensions
         return new Vector3((float)Math.Floor(old.x), (float)Math.Floor(old.y), (float)Math.Floor(old.z));
     }
 
+    public static Vector3 floorComponentsPlusPoint5(this Vector3 old)
+    {
+        return new Vector3((float)Math.Floor(old.x) + 0.5f, (float)Math.Floor(old.y) + 0.5f, (float)Math.Floor(old.z) + 0.5f);
+    }
+
     public static int isInside(this Vector3 toBeChecked, Vector3 cage)
     {
         if (toBeChecked.x < 0 || toBeChecked.x >= cage.x)
