@@ -27,6 +27,12 @@ public class MenuVR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Canvas parentcanvas = GetComponent<Canvas>();
+        if (!parentcanvas.enabled)
+        {
+            return;
+        }
+
         //if (Input.GetButtonDown("menudown"))
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -66,33 +72,40 @@ public class MenuVR : MonoBehaviour
         {
             VariableManager.instance.showNoMenu();
         }
-        if (buttons[selectedButton].name == "Zurück zum Menü")
+        else if (buttons[selectedButton].name == "MainMenu")
         {
             VariableManager.instance.showMainMenuMenu();
         }
-        if (buttons[selectedButton].name == "Highscore")
+        else if (buttons[selectedButton].name == "Highscore")
         {
             VariableManager.instance.showHighscoreMenu();
         }
-        if (buttons[selectedButton].name == "RestartGame")
+        else if (buttons[selectedButton].name == "RestartGame")
         {
             VariableManager.instance.showNoMenu();
         }
-        if (buttons[selectedButton].name == "Options")
+        else if (buttons[selectedButton].name == "Options")
         {
             VariableManager.instance.showOptionsMenu();
         }
-        if (buttons[selectedButton].name == "Resume")
+        else if (buttons[selectedButton].name == "Resume")
         {
             VariableManager.instance.showNoMenu();
         }
-        if (buttons[selectedButton].name == "Exit")
+        else if (buttons[selectedButton].name == "Exit")
         {
             Debug.Log("APP QUIT");
             Application.Quit();
-        }
 
-        throw new NotImplementedException();
+            //Not reached once deployed
+            return;
+        }
+        else
+        {
+            Debug.Log("Menubutton not identified");
+            Debug.Log(buttons[selectedButton].name);
+            throw new NotImplementedException();
+        }
     }
 
     private void enableButton(int buttonID)

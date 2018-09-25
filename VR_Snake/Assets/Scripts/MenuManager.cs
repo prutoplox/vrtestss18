@@ -108,9 +108,12 @@ public class MenuManager : MonoBehaviour
     {
         maincam.enabled = false;
         menucam.enabled = true;
-        if (!SnakeAutopilot.instance.isActive)
+        if (SnakeAutopilot.instance != null)
         {
-            SnakeAutopilot.instance.activateAutopilot();
+            if (!SnakeAutopilot.instance.isActive)
+            {
+                SnakeAutopilot.instance.activateAutopilot();
+            }
         }
     }
 }
