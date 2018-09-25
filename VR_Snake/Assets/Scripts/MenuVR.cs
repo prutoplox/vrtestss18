@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuVR : MonoBehaviour
 {
@@ -105,6 +106,71 @@ public class MenuVR : MonoBehaviour
 
             //Not reached once deployed
             return;
+        }
+        else if (buttons[selectedButton].name == "VolumeOption")
+        {
+            //VolumeSlider ++
+            Slider slider = GameObject.Find("VolumeSlider").GetComponent<Slider>();
+            Debug.Log("Volume is " + slider.value);
+            if (slider.value == 0f)
+            {
+                slider.value = 1f;
+                AudioManager.instance.setVolumeMax();
+                AudioManager.instance.setSoundVolumeMax();
+                Debug.Log("Volume set 1");
+            }
+            else
+            {
+                slider.value = 0f;
+                AudioManager.instance.setVolumeMin();
+                AudioManager.instance.setSoundVolumeMin();
+                Debug.Log("Volume set 0");
+            }
+        }
+        else if (buttons[selectedButton].name == "PowerUpOption")
+        {
+            Slider slider = GameObject.Find("PowerUpsSlider").GetComponent<Slider>();
+            Debug.Log("powerup is " + slider.value);
+            if (slider.value >= 0.5f)
+            {
+                slider.value = 0f;
+                VariableManager.instance.setPowerUpOff();
+            }
+            else
+            {
+                slider.value = 1f;
+                VariableManager.instance.setPowerUpOn();
+            }
+        }
+        else if (buttons[selectedButton].name == "HardModeOption")
+        {
+            Slider slider = GameObject.Find("HardModeSlider").GetComponent<Slider>();
+            Debug.Log("hard is " + slider.value);
+            if (slider.value >= 0.5f)
+            {
+                slider.value = 0f;
+                VariableManager.instance.setHardModeOff();
+            }
+            else
+            {
+                slider.value = 1f;
+                VariableManager.instance.setHardModeOn();
+            }
+        }
+        else if (buttons[selectedButton].name == "VRControlOption")
+        {
+            Slider slider = GameObject.Find("UseVrSlider").GetComponent<Slider>();
+            Debug.Log("vr is " + slider.value);
+            if (slider.value >= 0.5f)
+            {
+                slider.value = 0f;
+                VariableManager.instance.setUseVrOff();
+            }
+            else
+            {
+                slider.value = 1f;
+                VariableManager.instance.setUseVrOn();
+            }
         }
         else
         {
