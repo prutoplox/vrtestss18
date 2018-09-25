@@ -39,7 +39,6 @@ public class SnakeAutopilot : MonoBehaviour
         snake = FindObjectsOfType<MovementSnake>()[0];
 
         addStep(Rotations.NONE, new Vector3(10, 10, 10));
-        addStep(Rotations.NONE, Vector3.back);
         addStep(Rotations.RIGHT, new Vector3(10, 10, 10));
         addStep(Rotations.NONE, Vector3.back);
         addStep(Rotations.NONE, Vector3.back);
@@ -143,7 +142,7 @@ public class SnakeAutopilot : MonoBehaviour
         }
         if (pathNewFoodLocations[stepInAutopilot] != Vector3.back)
         {
-            UnityEngine.Object.FindObjectOfType<Food>().MoveToLocation(pathNewFoodLocations[stepInAutopilot]);
+            UnityEngine.Object.FindObjectOfType<Food>().MoveToLocation(pathNewFoodLocations[stepInAutopilot] + Vector3Extensions.getHalfVector());
         }
 
         stepInAutopilot++;

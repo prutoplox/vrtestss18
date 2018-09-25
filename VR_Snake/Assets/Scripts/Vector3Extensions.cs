@@ -9,6 +9,11 @@ static class Vector3Extensions
         return new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
     }
 
+    public static Vector3 getHalfVector()
+    {
+        return new Vector3(0.5f, 0.5f, 0.5f);
+    }
+
     public static Vector3 floorComponents(this Vector3 old)
     {
         return new Vector3((float)Math.Floor(old.x), (float)Math.Floor(old.y), (float)Math.Floor(old.z));
