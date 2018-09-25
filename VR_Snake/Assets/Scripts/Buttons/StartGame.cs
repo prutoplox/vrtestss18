@@ -7,6 +7,7 @@ public class StartGame : MonoBehaviour
     public Button restart;
 
     private bool switcher;
+    public static bool startThisGame = false;
 
     public void Start()
     {
@@ -17,6 +18,12 @@ public class StartGame : MonoBehaviour
 
     public void Update()
     {
+        if (startThisGame)
+        {
+            initialiseStart();
+            startThisGame = false;
+        }
+
         if (switcher == true)
         {
             initialiseStart();

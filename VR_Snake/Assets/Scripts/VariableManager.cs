@@ -8,6 +8,11 @@ public class VariableManager : MonoBehaviour
 
     public HighScoreManager highScoreManager;
 
+    //cams
+    public Camera menucam;
+
+    public Camera maincam;
+
     public bool isDebug;
 
     //Controller variables
@@ -265,6 +270,29 @@ public class VariableManager : MonoBehaviour
         showPause = false;
         showHighscore = false;
         showOptions = true;
+    }
+
+    public void useGameCam()
+    {
+        menucam.enabled = false;
+        maincam.enabled = true;
+        if (SnakeAutopilot.instance.isActive)
+        {
+            SnakeAutopilot.instance.deactivateAutopilot();
+        }
+    }
+
+    public void useMenuCam()
+    {
+        maincam.enabled = false;
+        menucam.enabled = true;
+        if (SnakeAutopilot.instance != null)
+        {
+            if (!SnakeAutopilot.instance.isActive)
+            {
+                SnakeAutopilot.instance.activateAutopilot();
+            }
+        }
     }
 
     public void setUseVrOff()
