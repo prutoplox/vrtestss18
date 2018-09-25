@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeAutopilot : MonoBehaviour {
-	
+public class SnakeAutopilot : MonoBehaviour
+{
     public enum Rotations
-	{
+    {
         NONE,
-	    UP,
+        UP,
         DOWN,
         LEFT,
         RIGHT
-	}
+    }
 
     public static SnakeAutopilot instance;
 
@@ -39,14 +38,13 @@ public class SnakeAutopilot : MonoBehaviour {
         isActive = false;
         snake = FindObjectsOfType<MovementSnake>()[0];
 
-
         addStep(Rotations.NONE, new Vector3(10, 10, 10));
         addStep(Rotations.NONE, Vector3.back);
         addStep(Rotations.RIGHT, new Vector3(10, 10, 10));
         addStep(Rotations.NONE, Vector3.back);
         addStep(Rotations.NONE, Vector3.back);
         addStep(Rotations.LEFT, Vector3.back);
-        for (int i = 0; i < 6; i++ )
+        for (int i = 0; i < 6; i++)
         {
             addStep(Rotations.NONE, Vector3.back);
         }
@@ -107,14 +105,14 @@ public class SnakeAutopilot : MonoBehaviour {
         pathNewFoodLocations.Add(vector3);
     }
 
-	public void Update()
+    public void Update()
     {
-        if(!isActive)
+        if (!isActive)
         {
             return;
         }
 
-        if(!snake.hasUpdated)
+        if (!snake.hasUpdated)
         {
             return;
         }
@@ -123,29 +121,34 @@ public class SnakeAutopilot : MonoBehaviour {
         {
             case Rotations.NONE:
                 break;
+
             case Rotations.UP:
                 snake.rotateUp();
                 break;
+
             case Rotations.DOWN:
                 snake.rotateDown();
                 break;
+
             case Rotations.LEFT:
                 snake.rotateLeft();
                 break;
+
             case Rotations.RIGHT:
                 snake.rotateRight();
                 break;
+
             default:
                 break;
         }
-        if(pathNewFoodLocations[stepInAutopilot] != Vector3.back)
+        if (pathNewFoodLocations[stepInAutopilot] != Vector3.back)
         {
             UnityEngine.Object.FindObjectOfType<Food>().MoveToLocation(pathNewFoodLocations[stepInAutopilot]);
         }
 
         stepInAutopilot++;
         int newStepInAutopilot = stepInAutopilot % pathRotations.Count;
-        if(newStepInAutopilot < stepInAutopilot)
+        if (newStepInAutopilot < stepInAutopilot)
         {
             Debug.Log("New autopilot loop");
             snake.ShrinkSnake();
@@ -153,7 +156,6 @@ public class SnakeAutopilot : MonoBehaviour {
         }
         stepInAutopilot = newStepInAutopilot;
     }
-
 
     public void activateAutopilot()
     {

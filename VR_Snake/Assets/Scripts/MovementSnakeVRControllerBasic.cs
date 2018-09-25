@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.XR;
-using UnityEngine.XR.WSA;
+﻿using UnityEngine;
 
-public class MovementSnakeVRControllerBasic : MonoBehaviour {
-    
+public class MovementSnakeVRControllerBasic : MonoBehaviour
+{
     public string[] cnames;
     private float lastUpdate;
 
@@ -18,7 +14,7 @@ public class MovementSnakeVRControllerBasic : MonoBehaviour {
     {
         if (VariableManager.instance.useVRControllerBasic)
         {
-                changeDirection();
+            changeDirection();
         }
     }
 
@@ -33,27 +29,24 @@ public class MovementSnakeVRControllerBasic : MonoBehaviour {
         {
             return;
         }
- 
-        if (Input.GetAxis("Vertical") > 0)  
+
+        if (Input.GetAxis("Vertical") > 0)
         {
             Debug.Log("+");
             MovementSnake.instance.rotateUp();
             lastUpdate = Time.time;
-
         }
         else if (Input.GetAxis("Vertical") < -0)
         {
             Debug.Log("-");
             MovementSnake.instance.rotateDown();
             lastUpdate = Time.time;
-
         }
         else if (Input.GetAxis("Horizontal") > 0)
         {
             Debug.Log("+");
             MovementSnake.instance.rotateRight();
             lastUpdate = Time.time;
-
         }
         else if (Input.GetAxis("Horizontal") < -0)
         {
@@ -63,13 +56,15 @@ public class MovementSnakeVRControllerBasic : MonoBehaviour {
         }
     }
 
-    private bool checkMovement() {
+    private bool checkMovement()
+    {
         float delta = Time.time - lastUpdate;
         if (delta < 0.35)
         {
             return false;
         }
-        else {
+        else
+        {
             return true;
         }
     }

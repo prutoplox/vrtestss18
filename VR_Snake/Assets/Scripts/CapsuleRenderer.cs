@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CapsuleRenderer : MonoBehaviour {
-
-        /*
-         * 
-            line.positionCount = currentPos.Length;
-            line.SetPositions(currentPos);
-         */
+public class CapsuleRenderer : MonoBehaviour
+{
+    /*
+     *
+        line.positionCount = currentPos.Length;
+        line.SetPositions(currentPos);
+     */
     private Vector3[] positions = null;
 
     public GameObject initalCapsule;
@@ -31,6 +30,7 @@ public class CapsuleRenderer : MonoBehaviour {
         {
             return positionCount;
         }
+
         set
         {
             if (value == positionCount)
@@ -43,6 +43,7 @@ public class CapsuleRenderer : MonoBehaviour {
                 Debug.LogWarning("Must be at least of positive length");
                 return;
             }
+
             //Debug.Log("setting from " + positionCount + " to " + value);
 
             // Set the unneeded capsules invisible, there are only positionCount-1 capsules needed to span positionCount positions
@@ -51,16 +52,18 @@ public class CapsuleRenderer : MonoBehaviour {
                 for (int i = value - 1; i < capsules.Count; i++)
                 {
                     capsules[i].GetComponent<MeshRenderer>().enabled = false;
+
                     //Debug.Log("\tsetting " + i + " invisible");
                 }
             }
+
             // Set all in range visible and expand if needed
             else if (value > positionCount)
             {
-
                 for (int i = 0; i < Math.Min(value - 1, capsules.Count); i++)
                 {
                     capsules[i].GetComponent<MeshRenderer>().enabled = true;
+
                     //Debug.Log("\tsetting " + i + " visible");
                 }
 
@@ -70,9 +73,11 @@ public class CapsuleRenderer : MonoBehaviour {
                     GameObject capsule = Instantiate(initalCapsule);
                     capsules.Add(capsule);
                     capsule.transform.localScale = new Vector3(VariableManager.instance.snakeThicknessX, 1, VariableManager.instance.snakeThicknessZ);
+
                     //Debug.Log("\tAdding new capsule");
                 }
             }
+
             //Debug.Log("New length is " + value);
             positionCount = value;
         }
@@ -102,7 +107,7 @@ public class CapsuleRenderer : MonoBehaviour {
 
         //Make it the right length
         Vector3 distance = end - start;
-        capsule.transform.localScale = new Vector3(capsule.transform.localScale.x, distance.magnitude * VariableManager.instance.snakeThicknessX, capsule.transform.localScale.z); 
+        capsule.transform.localScale = new Vector3(capsule.transform.localScale.x, distance.magnitude * VariableManager.instance.snakeThicknessX, capsule.transform.localScale.z);
 
         //rotate it into place
         capsule.transform.LookAt(start);

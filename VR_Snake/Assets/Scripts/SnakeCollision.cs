@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //Script for detecting collisions of the snake (WIP)
-public class SnakeCollision : MonoBehaviour {
-
+public class SnakeCollision : MonoBehaviour
+{
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Body")
@@ -25,5 +23,4 @@ public class SnakeCollision : MonoBehaviour {
             //Debug.Log("Other collision :" + other.ToString());
         }
     }
-   
 }

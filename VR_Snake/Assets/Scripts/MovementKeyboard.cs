@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //Script for Controlling the Snake with Keyboard
 public class MovementKeyboard : MonoBehaviour

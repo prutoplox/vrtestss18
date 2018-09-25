@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.XR;
-using UnityEngine.XR.WSA;
 
 //Script for controlling the snake with the VR-Headset's position/rotation
 public class MovementSnakeVR : MonoBehaviour
 {
-   
-    float timeLeft =  VariableManager.instance.timeBetweenChangeDirection;
+    float timeLeft = VariableManager.instance.timeBetweenChangeDirection;
 
     public void Update()
     {
@@ -40,7 +35,7 @@ public class MovementSnakeVR : MonoBehaviour
             MovementSnake.instance.rotateRight();
         }
         else if (InputTracking.GetLocalRotation(XRNode.Head).y < -VariableManager.instance.sensitivityHorizontal)
-        {   
+        {
             MovementSnake.instance.rotateLeft();
         }
     }

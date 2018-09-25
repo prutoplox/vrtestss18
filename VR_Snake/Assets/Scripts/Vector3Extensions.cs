@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 //Script for better Vector processing
@@ -38,6 +35,7 @@ static class Vector3Extensions
         }
         return 0;
     }
+
     public static Vector3 modulo(this Vector3 vectorToBeFitted, Vector3 cage)
     {
         return new Vector3((vectorToBeFitted.x + cage.x) % cage.x, (vectorToBeFitted.y + cage.y) % cage.y, (vectorToBeFitted.z + cage.z) % cage.z);
@@ -63,6 +61,7 @@ static class Vector3Extensions
     public static bool checkIfAreaLeftAndReturnNewPosition(this Vector3 toCheckposition, out Vector3 newPosition)
     {
         int leftGridVia = isInside(toCheckposition, VariableManager.instance.mapSize);
+
         //Avoid warnings where newPosition is not assigned, it will be overridden if something changes
         newPosition = toCheckposition;
         if (leftGridVia != 0)
@@ -70,26 +69,32 @@ static class Vector3Extensions
             switch (leftGridVia)
             {
                 case 1:
+
                     //Debug.Log("Left the grid on the x axis");
                     if (!VariableManager.instance.isXAxisLooped)
                     {
                         return true;
                     }
                     break;
+
                 case 2:
+
                     //Debug.Log("Left the grid on the y axis");
                     if (!VariableManager.instance.isYAxisLooped)
                     {
                         return true;
                     }
                     break;
+
                 case 3:
+
                     //Debug.Log("Left the grid on the z axis");
                     if (!VariableManager.instance.isZAxisLooped)
                     {
                         return true;
                     }
                     break;
+
                 default:
                     break;
             }

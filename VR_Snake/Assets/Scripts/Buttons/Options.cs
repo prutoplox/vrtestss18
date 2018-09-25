@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Options : MonoBehaviour {
-
+public class Options : MonoBehaviour
+{
     public Button options;
     public Button options1;
+
     // Use this for initialization
     void Start()
     {

@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-public class GameOver : MonoBehaviour {
-
+public class GameOver : MonoBehaviour
+{
     private void showGameOver()
     {
         VariableManager.instance.showMainMenu = false;
@@ -13,6 +10,4 @@ public class GameOver : MonoBehaviour {
         VariableManager.instance.showHighscore = false;
         VariableManager.instance.showGameOver = true;
     }
-
-
 }

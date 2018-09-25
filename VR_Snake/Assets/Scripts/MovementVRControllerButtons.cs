@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MovementVRControllerButtons : MonoBehaviour {
-
+public class MovementVRControllerButtons : MonoBehaviour
+{
     public void Update()
     {
         if (VariableManager.instance.useVRControllerBasicButtons)

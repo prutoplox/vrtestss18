@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class BackToMenu : MonoBehaviour {
-
+public class BackToMenu : MonoBehaviour
+{
     public Button back1;
     public Button back2;
-
 
     // Use this for initialization
     void Start()

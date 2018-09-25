@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //Script for the VariableManger of SnakeVR
 public class VariableManager : MonoBehaviour

@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 //Script for creating a camera and snake with smooth movement
-public class DebugShowPosition : MonoBehaviour {
-
+public class DebugShowPosition : MonoBehaviour
+{
     private MovementSnake snake;
     public GameObject head;
     public GameObject tail;
     public GameObject cam;
 
-	void Start () {
-         snake = FindObjectsOfType<MovementSnake>()[0];
+    void Start()
+    {
+        snake = FindObjectsOfType<MovementSnake>()[0];
 
-         GetPositionsFromSnake();
-	}
+        GetPositionsFromSnake();
+    }
 
     Vector3[] oldPositions = null;
     Vector3[] newPositions = null;
@@ -42,7 +40,7 @@ public class DebugShowPosition : MonoBehaviour {
         if (oldPositions != null)
         {
             //the following condition is true iff there was a reset
-            if(newPositions.Length < oldPositions.Length)
+            if (newPositions.Length < oldPositions.Length)
             {
                 firstLoop = true;
                 return;
@@ -51,11 +49,10 @@ public class DebugShowPosition : MonoBehaviour {
             float progressMovement = Math.Min(snake.progressInStep * 2, 1);
             float progressRotation = progressMovement;
 
-
             Vector3[] currentPos = new Vector3[oldPositions.Length];
             Quaternion currentRotation = Quaternion.Slerp(oldRotation, newRotation, progressRotation);
 
-            for(int i = 0; i < oldPositions.Length; i++)
+            for (int i = 0; i < oldPositions.Length; i++)
             {
                 currentPos[i] = Vector3.Lerp(oldPositions[i], newPositions[i], progressMovement);
             }
@@ -69,6 +66,7 @@ public class DebugShowPosition : MonoBehaviour {
             cam.transform.rotation = currentRotation;
 
             CapsuleRenderer capsule = GetComponent<CapsuleRenderer>();
+
             //Render the head differently
             head.transform.position = currentPos[0];
             head.transform.rotation = currentRotation;
@@ -78,25 +76,23 @@ public class DebugShowPosition : MonoBehaviour {
             capsule.PositionCount = currentPos.Length;
             capsule.SetPositions(currentPos);
 
-
             //Render the tail differently
             int snakeLength = snake.GetLength();
+
             //GameObject tailLogic = snake.GetSnakePartGameObject(snakeLength - 1);
             tail.transform.position = currentPos[currentPos.Length - 1];
             tail.transform.rotation = Quaternion.Slerp(oldRotationTail, newRotationTail, progressRotation);
             tail.transform.Rotate(new Vector3(-90, 0, 0));
-
         }
         else
         {
             Debug.Log("Waiting for new data, please hold on...");
         }
-
-	}
+    }
 
     private void GetPositionsFromSnake()
     {
-        if(snake.hasUpdated)
+        if (snake.hasUpdated)
         {
             oldPositions = newPositions;
             oldRotation = newRotation;
