@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-
-
     public float respawnTimeMin;
     public float respawnTimeMax;
     private float timeTillRespawn;
@@ -49,7 +45,6 @@ public class Food : MonoBehaviour
         MoveToLocation(newPosition.floorComponentsPlusPoint5());
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Snake")
@@ -62,8 +57,8 @@ public class Food : MonoBehaviour
         }
     }
 
-
     private bool isVisible;
+
     public void MoveToLocation(Vector3 newPosition)
     {
         showObject();
