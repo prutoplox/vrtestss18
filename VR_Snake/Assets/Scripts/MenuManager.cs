@@ -8,15 +8,9 @@ public class MenuManager : MonoBehaviour
     public GameObject pause;
     public GameObject gameover;
 
-    //cams
-    public Camera menucam;
-
-    public Camera maincam;
-
     private void Start()
     {
         Debug.Log("MenuManager Init");
-        useMenuCam();
     }
 
     // Update is called once per frame
@@ -24,12 +18,10 @@ public class MenuManager : MonoBehaviour
     {
         if (VariableManager.instance.startGame)
         {
-            useGameCam();
         }
 
         if (VariableManager.instance.showMainMenu == true)
         {
-            useMenuCam();
             mainmenu.GetComponent<Canvas>().enabled = true;
 
             if (AudioManager.instance.sourceMain.clip != AudioManager.instance.menuMusic)
@@ -44,8 +36,6 @@ public class MenuManager : MonoBehaviour
 
         if (VariableManager.instance.showHighscore == true)
         {
-            useMenuCam();
-
             highscore.GetComponent<Canvas>().enabled = true;
 
             if (AudioManager.instance.sourceMain.clip != AudioManager.instance.highScoreMusic)
@@ -60,7 +50,6 @@ public class MenuManager : MonoBehaviour
 
         if (VariableManager.instance.showGameOver == true)
         {
-            useMenuCam();
             gameover.GetComponent<Canvas>().enabled = true;
 
             if (AudioManager.instance.sourceMain.clip != AudioManager.instance.gameOverMusic)
@@ -75,7 +64,6 @@ public class MenuManager : MonoBehaviour
 
         if (VariableManager.instance.showOptions == true)
         {
-            useMenuCam();
             options.GetComponent<Canvas>().enabled = true;
         }
         else
@@ -85,35 +73,11 @@ public class MenuManager : MonoBehaviour
 
         if (VariableManager.instance.showPause == true)
         {
-            useMenuCam();
             pause.GetComponent<Canvas>().enabled = true;
         }
         else
         {
             pause.GetComponent<Canvas>().enabled = false;
-        }
-    }
-
-    private void useGameCam()
-    {
-        menucam.enabled = false;
-        maincam.enabled = true;
-        if (SnakeAutopilot.instance.isActive)
-        {
-            SnakeAutopilot.instance.deactivateAutopilot();
-        }
-    }
-
-    private void useMenuCam()
-    {
-        maincam.enabled = false;
-        menucam.enabled = true;
-        if (SnakeAutopilot.instance != null)
-        {
-            if (!SnakeAutopilot.instance.isActive)
-            {
-                SnakeAutopilot.instance.activateAutopilot();
-            }
         }
     }
 }

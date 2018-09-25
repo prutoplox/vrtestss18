@@ -74,8 +74,8 @@ public class MovementSnake : MonoBehaviour
         if (VariableManager.instance.dieOnWallCollsion)
         {
             showOnlyGameOver();
+            VariableManager.instance.showGameOverMenu();
             VariableManager.instance.highScoreManager.setHighScore(VariableManager.instance.score);
-            VariableManager.instance.getHighScores();
             Debug.Log("Collided with the wall and died");
             VariableManager.instance.hasLost = true;
         }
@@ -83,6 +83,7 @@ public class MovementSnake : MonoBehaviour
 
     private static void showOnlyGameOver()
     {
+        VariableManager.instance.useMenuCam();
         VariableManager.instance.showGameOverMenu();
     }
 

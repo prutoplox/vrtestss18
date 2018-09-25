@@ -70,26 +70,32 @@ public class MenuVR : MonoBehaviour
     {
         if (buttons[selectedButton].name == "StartGame")
         {
+            StartGame.startThisGame = true;
             VariableManager.instance.showNoMenu();
+            VariableManager.instance.useGameCam();
+            if (SnakeAutopilot.instance.isActive)
+            {
+                SnakeAutopilot.instance.deactivateAutopilot();
+            }
         }
         else if (buttons[selectedButton].name == "MainMenu")
         {
+            VariableManager.instance.useMenuCam();
             VariableManager.instance.showMainMenuMenu();
         }
         else if (buttons[selectedButton].name == "Highscore")
         {
+            VariableManager.instance.useMenuCam();
             VariableManager.instance.showHighscoreMenu();
-        }
-        else if (buttons[selectedButton].name == "RestartGame")
-        {
-            VariableManager.instance.showNoMenu();
         }
         else if (buttons[selectedButton].name == "Options")
         {
+            VariableManager.instance.useMenuCam();
             VariableManager.instance.showOptionsMenu();
         }
         else if (buttons[selectedButton].name == "Resume")
         {
+            VariableManager.instance.useMenuCam();
             VariableManager.instance.showNoMenu();
         }
         else if (buttons[selectedButton].name == "Exit")
