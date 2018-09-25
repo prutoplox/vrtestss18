@@ -11,7 +11,12 @@ static class Vector3Extensions
 
     public static Vector3 getHalfVector()
     {
-        return new Vector3(0.5f, 0.5f, 0.5f);
+        return getValueInAllComponents(0.5f);
+    }
+
+    public static Vector3 getValueInAllComponents(float value)
+    {
+        return new Vector3(value, value, value);
     }
 
     public static Vector3 floorComponents(this Vector3 old)

@@ -31,11 +31,7 @@ public class HighScore : MonoBehaviour
     private void showHighscore()
     {
         setHighscoreToTextFields();
-        VariableManager.instance.showGameOver = false;
-        VariableManager.instance.showMainMenu = false;
-        VariableManager.instance.showOptions = false;
-        VariableManager.instance.showPause = false;
-        VariableManager.instance.showHighscore = true;
+        VariableManager.instance.showHighscoreMenu();
     }
 
     public void setHighscoreToTextFields()

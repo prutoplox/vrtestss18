@@ -9,8 +9,14 @@ public class ExitGame : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        exit.onClick.AddListener(exitGame);
-        exit2.onClick.AddListener(exitGame);
+        if (exit != null)
+        {
+            exit.onClick.AddListener(exitGame);
+        }
+        if (exit2 != null)
+        {
+            exit2.onClick.AddListener(exitGame);
+        }
     }
 
     private void exitGame()

@@ -83,12 +83,7 @@ public class MovementSnake : MonoBehaviour
 
     private static void showOnlyGameOver()
     {
-        VariableManager.instance.startGame = false;
-        VariableManager.instance.showMainMenu = false;
-        VariableManager.instance.showHighscore = false;
-        VariableManager.instance.showOptions = false;
-        VariableManager.instance.showPause = false;
-        VariableManager.instance.showGameOver = true;
+        VariableManager.instance.showGameOverMenu();
     }
 
     public void CollsionBody()

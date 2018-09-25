@@ -7,34 +7,31 @@ public class Pause : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("P");
-            if (MovementSnake.instance.isPaused == true)
-            {
-                stopPause();
-            }
-            else
-            {
-                startPause();
-            }
+            togglePause();
+        }
+    }
+
+    private void togglePause()
+    {
+        if (MovementSnake.instance.isPaused == true)
+        {
+            stopPause();
+        }
+        else
+        {
+            startPause();
         }
     }
 
     private void startPause()
     {
         MovementSnake.instance.isPaused = true;
-        VariableManager.instance.showGameOver = false;
-        VariableManager.instance.showMainMenu = false;
-        VariableManager.instance.showHighscore = false;
-        VariableManager.instance.showOptions = false;
-        VariableManager.instance.showPause = true;
+        VariableManager.instance.showPauseMenu();
     }
 
     private void stopPause()
     {
         MovementSnake.instance.isPaused = false;
-        VariableManager.instance.showGameOver = false;
-        VariableManager.instance.showMainMenu = false;
-        VariableManager.instance.showHighscore = false;
-        VariableManager.instance.showOptions = false;
-        VariableManager.instance.showPause = false;
+        VariableManager.instance.showNoMenu();
     }
 }

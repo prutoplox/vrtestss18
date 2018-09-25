@@ -213,6 +213,60 @@ public class VariableManager : MonoBehaviour
         enableUseVr = false;
     }
 
+    public void showNoMenu()
+    {
+        showGameOver = false;
+        showMainMenu = false;
+        showPause = false;
+        showHighscore = false;
+        showOptions = false;
+    }
+
+    public void showGameOverMenu()
+    {
+        showGameOver = true;
+        showMainMenu = false;
+        showPause = false;
+        showHighscore = false;
+        showOptions = false;
+    }
+
+    public void showMainMenuMenu()
+    {
+        showGameOver = false;
+        showMainMenu = true;
+        showPause = false;
+        showHighscore = false;
+        showOptions = false;
+    }
+
+    public void showPauseMenu()
+    {
+        showGameOver = false;
+        showMainMenu = false;
+        showPause = true;
+        showHighscore = false;
+        showOptions = false;
+    }
+
+    public void showHighscoreMenu()
+    {
+        showGameOver = false;
+        showMainMenu = false;
+        showPause = false;
+        showHighscore = true;
+        showOptions = false;
+    }
+
+    public void showOptionsMenu()
+    {
+        showGameOver = false;
+        showMainMenu = false;
+        showPause = false;
+        showHighscore = false;
+        showOptions = true;
+    }
+
     public void setUseVrOff()
     {
         enableUseVr = false;

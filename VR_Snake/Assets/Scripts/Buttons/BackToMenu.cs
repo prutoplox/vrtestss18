@@ -15,10 +15,6 @@ public class BackToMenu : MonoBehaviour
 
     private void backToMenu()
     {
-        VariableManager.instance.showGameOver = false;
-        VariableManager.instance.showOptions = false;
-        VariableManager.instance.showPause = false;
-        VariableManager.instance.showHighscore = false;
-        VariableManager.instance.showMainMenu = true;
+        VariableManager.instance.showMainMenuMenu();
     }
 }
