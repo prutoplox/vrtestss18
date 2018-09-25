@@ -83,6 +83,7 @@ public class MovementSnake : MonoBehaviour
 
     private static void showOnlyGameOver()
     {
+        VariableManager.instance.startGame = false;
         VariableManager.instance.useMenuCam();
         VariableManager.instance.showGameOverMenu();
     }

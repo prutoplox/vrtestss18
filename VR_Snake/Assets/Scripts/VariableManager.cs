@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 //Script for the VariableManger of SnakeVR
 public class VariableManager : MonoBehaviour
@@ -134,6 +136,23 @@ public class VariableManager : MonoBehaviour
 
     public bool enableHardmode;
     public bool enableUseVr;
+
+    //Scores
+
+    //Scores
+    public Text placeT1;
+    public Text placeT2;
+    public Text placeT3;
+    public Text placeT4;
+    public Text placeT5;
+
+    //shadow text
+    public Text place1shadow;
+
+    public Text place2shadow;
+    public Text place3shadow;
+    public Text place4shadow;
+    public Text place5shadow;
     /*
      * Force that the correct values are accessible each and every time
      * and not depending on the order when the start() was called.
@@ -216,6 +235,8 @@ public class VariableManager : MonoBehaviour
         enablePowerUps = false;
         enableHardmode = false;
         enableUseVr = false;
+
+        
     }
 
     public void showNoMenu()
@@ -229,20 +250,22 @@ public class VariableManager : MonoBehaviour
 
     public void showGameOverMenu()
     {
-        showGameOver = true;
         showMainMenu = false;
         showPause = false;
         showHighscore = false;
         showOptions = false;
+        showGameOver = true;
+
     }
 
     public void showMainMenuMenu()
     {
         showGameOver = false;
-        showMainMenu = true;
         showPause = false;
         showHighscore = false;
         showOptions = false;
+        showMainMenu = true;
+
     }
 
     public void showPauseMenu()
@@ -259,8 +282,9 @@ public class VariableManager : MonoBehaviour
         showGameOver = false;
         showMainMenu = false;
         showPause = false;
-        showHighscore = true;
         showOptions = false;
+        showHighscore = true;
+
     }
 
     public void showOptionsMenu()
@@ -274,6 +298,7 @@ public class VariableManager : MonoBehaviour
 
     public void useGameCam()
     {
+        SnakeAutopilot.instance.deactivateAutopilot();
         menucam.enabled = false;
         maincam.enabled = true;
         if (SnakeAutopilot.instance.isActive)
@@ -284,6 +309,7 @@ public class VariableManager : MonoBehaviour
 
     public void useMenuCam()
     {
+        SnakeAutopilot.instance.activateAutopilot();
         maincam.enabled = false;
         menucam.enabled = true;
         if (SnakeAutopilot.instance != null)
@@ -407,5 +433,34 @@ public class VariableManager : MonoBehaviour
     public void eatPoints()
     {
         bonusScore += 100;
+    }
+
+    public void showHighscoresText()
+    {
+        setHighscoreToTextFields();
+        VariableManager.instance.showHighscoreMenu();
+    }
+
+    public void setHighscoreToTextFields()
+    {
+        try
+        {
+            string[] scores = VariableManager.instance.highScoreManager.getTopFiveHighscoreAsArray();
+            placeT1.text = "1: \t" + scores[0];
+            placeT2.text = "2: \t" + scores[1];
+            placeT3.text = "3: \t" + scores[2];
+            placeT4.text = "4: \t" + scores[3];
+            placeT5.text = "5: \t" + scores[4];
+
+            place1shadow.text = "1: \t" + scores[0];
+            place2shadow.text = "2: \t" + scores[1];
+            place3shadow.text = "3: \t" + scores[2];
+            place4shadow.text = "4: \t" + scores[3];
+            place5shadow.text = "5: \t" + scores[4];
+        }
+        catch (Exception)
+        {
+            Debug.Log("VariableManager not init");
+        }
     }
 }

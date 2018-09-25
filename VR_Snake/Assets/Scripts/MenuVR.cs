@@ -7,12 +7,13 @@ public class MenuVR : MonoBehaviour
 {
     public GameObject[] buttons;
     int selectedButton;
-    float scaleFactor = 1.3f;
+    float scaleFactor = 2f;
     Vector3 originalScale;
 
     // Use this for initialization
     void Start()
     {
+        
         selectedButton = 0;
         enableButton(selectedButton);
     }
@@ -34,19 +35,19 @@ public class MenuVR : MonoBehaviour
         }
 
         //if (Input.GetButtonDown("menudown"))
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyUp(KeyCode.M))
         {
             selectNextButton();
         }
 
         //if (Input.GetButtonDown("menuup"))
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyUp(KeyCode.N))
         {
             selectPreviousButton();
         }
 
         //if (Input.GetButtonDown("menuup"))
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyUp(KeyCode.B))
         {
             selectedMenuFromButton();
         }
@@ -71,6 +72,8 @@ public class MenuVR : MonoBehaviour
         if (buttons[selectedButton].name == "StartGame")
         {
             StartGame.startThisGame = true;
+            VariableManager.instance.startGame = true;
+            //VariableManager.instance.startTime = Time.time;
             VariableManager.instance.showNoMenu();
             VariableManager.instance.useGameCam();
             if (SnakeAutopilot.instance.isActive)
@@ -86,6 +89,7 @@ public class MenuVR : MonoBehaviour
         else if (buttons[selectedButton].name == "Highscore")
         {
             VariableManager.instance.useMenuCam();
+            VariableManager.instance.showHighscoresText();
             VariableManager.instance.showHighscoreMenu();
         }
         else if (buttons[selectedButton].name == "Options")

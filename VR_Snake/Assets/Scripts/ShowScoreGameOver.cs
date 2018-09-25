@@ -17,8 +17,8 @@ public class ShowScoreGameOver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (VariableManager.instance.showGameOver){
-            scoreText.text = VariableManager.instance.score.ToString();
-            scoreText.text = VariableManager.instance.score.ToString();
+            scoreText.text = "Score: " + VariableManager.instance.score.ToString("f2");
+            scoreTextS.text = "Score: " + VariableManager.instance.score.ToString("f2");
         }
 	}
 }
