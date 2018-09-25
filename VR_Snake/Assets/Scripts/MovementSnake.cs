@@ -273,7 +273,7 @@ public class MovementSnake : MonoBehaviour
         GameObject newBody = Instantiate(snake[snake.Count - 1]);
         snake.Add(newBody);
         newBody.transform.Translate(Vector3.back);
-        newBody.transform.Rotate(new Vector3(360, 360, 360) - snakeRotations[snakeRotations.Count - 1]);
+        //newBody.transform.Rotate(new Vector3(360, 360, 360) - snakeRotations[snakeRotations.Count - 1]);
         snakeRotations.Add(Vector3.forward);
     }
 
