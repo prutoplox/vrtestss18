@@ -34,20 +34,22 @@ public class MenuVR : MonoBehaviour
             return;
         }
 
+        //IDs from https://docs.unity3d.com/Manual/Windows-Mixed-Reality-Input.html
+
         //if (Input.GetButtonDown("menudown"))
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("4"))
         {
             selectNextButton();
         }
 
         //if (Input.GetButtonDown("menuup"))
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N) || Input.GetButtonDown("5"))
         {
             selectPreviousButton();
         }
 
         //if (Input.GetButtonDown("menuup"))
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetButtonDown("6"))
         {
             selectedMenuFromButton();
         }
