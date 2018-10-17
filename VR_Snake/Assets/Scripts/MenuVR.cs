@@ -39,14 +39,16 @@ public class MenuVR : MonoBehaviour
 
         //if (Input.GetButtonDown("menudown"))
 
-        if (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("4"))
+        if (Input.GetKeyDown(KeyCode.M) )
+       // if (Input.GetKeyDown(KeyCode.S) || Input.GetButtonDown("4"))
         {
             selectNextButton();
         }
 
         //if (Input.GetButtonDown("menuup"))
 
-        if (Input.GetKeyDown(KeyCode.N) || Input.GetButtonDown("5"))
+       // if (Input.GetKeyDown(KeyCode.W) || Input.GetButtonDown("5"))
+        if (Input.GetKeyDown(KeyCode.N))
         {
             selectPreviousButton();
         }
@@ -54,7 +56,8 @@ public class MenuVR : MonoBehaviour
         //if (Input.GetButtonDown("menuup"))
 
 
-        if (Input.GetKeyDown(KeyCode.B) || Input.GetButtonDown("6"))
+       // if (Input.GetKeyDown(KeyCode.D) || Input.GetButtonDown("6"))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             selectedMenuFromButton();
         }

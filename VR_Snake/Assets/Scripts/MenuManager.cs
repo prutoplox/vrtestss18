@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
     public GameObject pause;
     public GameObject gameover;
 
+
     private void Start()
     {
         Debug.Log("MenuManager Init");
@@ -22,6 +23,8 @@ public class MenuManager : MonoBehaviour
 
         if (VariableManager.instance.showMainMenu == true)
         {
+    
+            SnakeAutopilot.instance.activateAutopilot();
             mainmenu.GetComponent<Canvas>().enabled = true;
 
             if (AudioManager.instance.sourceMain.clip != AudioManager.instance.menuMusic)

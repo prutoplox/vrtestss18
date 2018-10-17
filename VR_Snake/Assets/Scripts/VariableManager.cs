@@ -167,7 +167,7 @@ public class VariableManager : MonoBehaviour
         useKeyboard = true;
         useVRAdvanced = false;
         useVRBasic = false;
-        useVR360persistent = false;
+        useVR360persistent = true;
         useVRControllerBasic = false;
         useVRControllerBasicButtons = false;
         useRotationControl = false;
@@ -324,11 +324,13 @@ public class VariableManager : MonoBehaviour
     public void setUseVrOff()
     {
         enableUseVr = false;
+        VariableManager.instance.useVR360persistent = false;
     }
 
     public void setUseVrOn()
     {
         enableUseVr = true;
+        VariableManager.instance.useVR360persistent = true;
     }
 
     public void setHardModeOff()
