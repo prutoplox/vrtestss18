@@ -186,9 +186,41 @@ public class MovementSnake : MonoBehaviour
 
     public void setRotation(Vector3 newOrientation)
     {
-        //TODO make sure the new relative rotation is as wanted
-        //Want to set sR[0] so that it rotates the preview orientation to the wanted one.
-        snakeRotations[0] = newOrientation - snake[0].transform.rotation.eulerAngles;
+        var relativeRotation = newOrientation - snake[0].transform.rotation.eulerAngles;
+
+        if (angleEquals(relativeRotation.x, 90))
+        {
+            rotateUp();
+        }
+        else if (angleEquals(relativeRotation.x, 270))
+        {
+            rotateDown();
+        }
+
+        if (angleEquals(relativeRotation.y, 90))
+        {
+            rotateRight();
+        }
+        else if (angleEquals(relativeRotation.y, 270))
+        {
+            rotateLeft();
+        }
+
+        if (angleEquals(relativeRotation.z, 90))
+        {
+            rotateViewClockwise();
+        }
+        else if (angleEquals(relativeRotation.z, 270))
+        {
+            rotateViewCounterClockwise();
+        }
+    }
+
+    private bool angleEquals(float x, float v)
+    {
+        float xPositive = ((x % 360) + 360) % 360;
+        float yPositive = ((y % 360) + 360) % 360;
+        return xPositive == yPositive;
     }
 
     // Update is called once per frame

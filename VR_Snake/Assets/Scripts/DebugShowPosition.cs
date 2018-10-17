@@ -63,7 +63,10 @@ public class DebugShowPosition : MonoBehaviour
 
             //First set the camera at the correct location
             cam.transform.position = currentPos[0];
-            cam.transform.rotation = currentRotation;
+            if (!VariableManager.instance.useVR360persistent)
+            {
+                cam.transform.rotation = currentRotation;
+            }
 
             CapsuleRenderer capsule = GetComponent<CapsuleRenderer>();
 

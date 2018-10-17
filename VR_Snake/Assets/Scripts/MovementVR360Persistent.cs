@@ -34,7 +34,7 @@ public class MovementVR360Persistent : MonoBehaviour
         }
     }
 
-    private static float roundToNextAxis(float p)
+    public static float roundToNextAxis(float p)
     {
         p = (p % 360 + 360) % 360; //Make sure the value is between 0 and 360
         float pOffset45 = p + 45;
