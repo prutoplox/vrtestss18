@@ -36,9 +36,11 @@ public class MovementVR360Persistent : MonoBehaviour
 
     private static float roundToNextAxis(float p)
     {
+        p = (p % 360 + 360) % 360; //Make sure the value is between 0 and 360
         float pOffset45 = p + 45;
         float tmp2 = pOffset45 / 90;
         float tmp3 = Mathf.Floor(tmp2);
-        return (tmp3 * 90) % 360;
+        float returnValue = (tmp3 * 90) % 360;
+        return returnValue;
     }
 }
