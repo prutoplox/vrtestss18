@@ -216,7 +216,7 @@ public class MovementSnake : MonoBehaviour
         }
     }
 
-    private bool angleEquals(float x, float v)
+    private bool angleEquals(float x, float y)
     {
         float xPositive = ((x % 360) + 360) % 360;
         float yPositive = ((y % 360) + 360) % 360;
