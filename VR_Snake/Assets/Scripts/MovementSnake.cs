@@ -190,11 +190,11 @@ public class MovementSnake : MonoBehaviour
 
         if (angleEquals(relativeRotation.x, 90))
         {
-            rotateUp();
+            rotateDown();
         }
         else if (angleEquals(relativeRotation.x, 270))
         {
-            rotateDown();
+            rotateUp();
         }
 
         if (angleEquals(relativeRotation.y, 90))
@@ -220,7 +220,17 @@ public class MovementSnake : MonoBehaviour
     {
         float xPositive = ((x % 360) + 360) % 360;
         float yPositive = ((y % 360) + 360) % 360;
-        return xPositive == yPositive;
+        return NearlyEqual(xPositive, yPositive);
+    }
+
+    public static bool NearlyEqual(float f1, float f2)
+    {
+        return NearlyEqual(f1, f2, 5);
+    }
+
+    public static bool NearlyEqual(float f1, float f2, float tolerance)
+    {
+        return Math.Abs(f1 - f2) < tolerance;
     }
 
     // Update is called once per frame

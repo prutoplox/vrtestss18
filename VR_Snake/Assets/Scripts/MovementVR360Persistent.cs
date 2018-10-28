@@ -18,9 +18,14 @@ public class MovementVR360Persistent : MonoBehaviour
     private void changeDirection()
     {
         Quaternion rotation = InputTracking.GetLocalRotation(XRNode.Head);
-        float roundedX = roundToNextAxis(rotation.eulerAngles.x * 360);
-        float roundedY = roundToNextAxis(rotation.eulerAngles.y * 360);
-        float roundedZ = roundToNextAxis(rotation.eulerAngles.z * 360);
+        Debug.Log("EulerAngles" + rotation.eulerAngles);
+        float roundedX = roundToNextAxis(rotation.eulerAngles.x);
+        float roundedY = roundToNextAxis(rotation.eulerAngles.y);
+        float roundedZ = roundToNextAxis(rotation.eulerAngles.z);
+        Debug.Log("Rounded X" +roundedX);
+        Debug.Log("Rounded Y" + roundedY);
+        Debug.Log("Rounded Z" + roundedZ);
+
         Vector3 newRotation = new Vector3(roundedX, roundedY, roundedZ);
         if (previousRotation == newRotation)
         {

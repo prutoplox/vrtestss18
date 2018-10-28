@@ -14,12 +14,12 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+       /*
         Debug.Log("SCORE" + VariableManager.instance.score.ToString());
         Debug.Log("BONUS SCORE" + VariableManager.instance.bonusScore.ToString());
         Debug.Log("GAMETIME" + VariableManager.instance.gameTime.ToString());
         Debug.Log("ALLTIME" + VariableManager.instance.allTime.ToString());
-        Debug.Log("TimeSCORE" + VariableManager.instance.timeScore.ToString()); 
+        Debug.Log("TimeSCORE" + VariableManager.instance.timeScore.ToString()); */
         
         if (VariableManager.instance.startGame)
         {
