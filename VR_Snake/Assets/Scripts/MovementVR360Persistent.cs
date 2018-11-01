@@ -4,13 +4,12 @@ using UnityEngine.XR;
 //Script for alternative movement
 public class MovementVR360Persistent : MonoBehaviour
 {
-    Vector3 previousRotation = new Vector3(0, 0, 0);
 
     void Update()
     {
         if (VariableManager.instance.useVR360persistent)
         {
-            Debug.Log((InputTracking.GetLocalRotation(XRNode.Head)).ToString());
+           // Debug.Log((InputTracking.GetLocalRotation(XRNode.Head)).ToString());
             changeDirection();
         }
     }
@@ -22,21 +21,14 @@ public class MovementVR360Persistent : MonoBehaviour
         float roundedX = roundToNextAxis(rotation.eulerAngles.x);
         float roundedY = roundToNextAxis(rotation.eulerAngles.y);
         float roundedZ = roundToNextAxis(rotation.eulerAngles.z);
-        Debug.Log("Rounded X" +roundedX);
-        Debug.Log("Rounded Y" + roundedY);
-        Debug.Log("Rounded Z" + roundedZ);
+        //Debug.Log("Rounded X" +roundedX);
+       // Debug.Log("Rounded Y" + roundedY);
+       // Debug.Log("Rounded Z" + roundedZ);
 
         Vector3 newRotation = new Vector3(roundedX, roundedY, roundedZ);
-        if (previousRotation == newRotation)
-        {
-            Debug.Log("No significant rotation change detected...");
-        }
-        else
-        {
-            Debug.Log("Rotating to...");
-            Debug.Log(newRotation);
-            MovementSnake.instance.setRotation(newRotation);
-        }
+        Debug.Log("Rotating to...");
+        // Debug.Log(newRotation);
+        MovementSnake.instance.setRotation(newRotation);
     }
 
     public static float roundToNextAxis(float p)

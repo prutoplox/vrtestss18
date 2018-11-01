@@ -169,11 +169,13 @@ public class MovementSnake : MonoBehaviour
 
     internal void rotateViewClockwise()
     {
+        Debug.Log("Rotating Clockwise");
         rotateView(new Vector3(0, 0, 90));
     }
 
     internal void rotateViewCounterClockwise()
     {
+        Debug.Log("Rotating Counter-Clockwise");
         rotateView(new Vector3(0, 0, -90));
     }
 
@@ -187,6 +189,7 @@ public class MovementSnake : MonoBehaviour
     public void setRotation(Vector3 newOrientation)
     {
         var relativeRotation = newOrientation - snake[0].transform.rotation.eulerAngles;
+        Debug.Log(relativeRotation);
 
         if (angleEquals(relativeRotation.x, 90))
         {
@@ -223,12 +226,7 @@ public class MovementSnake : MonoBehaviour
         return NearlyEqual(xPositive, yPositive);
     }
 
-    public static bool NearlyEqual(float f1, float f2)
-    {
-        return NearlyEqual(f1, f2, 5);
-    }
-
-    public static bool NearlyEqual(float f1, float f2, float tolerance)
+    public static bool NearlyEqual(float f1, float f2, float tolerance = 5)
     {
         return Math.Abs(f1 - f2) < tolerance;
     }
