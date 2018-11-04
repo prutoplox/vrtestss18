@@ -191,6 +191,9 @@ public class MovementSnake : MonoBehaviour
         var relativeRotation = newOrientation - snake[0].transform.rotation.eulerAngles;
         Debug.Log(relativeRotation);
 
+        headTurning = Vector3.zero;
+        transform.rotation.SetLookRotation(new Vector3(0, 0, newOrientation.z)); //Need to verify
+
         if (angleEquals(relativeRotation.x, 90))
         {
             rotateDown();
@@ -207,15 +210,6 @@ public class MovementSnake : MonoBehaviour
         else if (angleEquals(relativeRotation.y, 270))
         {
             rotateLeft();
-        }
-
-        if (angleEquals(relativeRotation.z, 90))
-        {
-            rotateViewCounterClockwise();
-        }
-        else if (angleEquals(relativeRotation.z, 270))
-        {
-            rotateViewClockwise();
         }
     }
 
