@@ -211,11 +211,11 @@ public class MovementSnake : MonoBehaviour
 
         if (angleEquals(relativeRotation.z, 90))
         {
-            rotateViewClockwise();
+            rotateViewCounterClockwise();
         }
         else if (angleEquals(relativeRotation.z, 270))
         {
-            rotateViewCounterClockwise();
+            rotateViewClockwise();
         }
     }
 

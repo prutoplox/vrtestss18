@@ -2,12 +2,10 @@
 
 public class MovementSnakeVRControllerBasic : MonoBehaviour
 {
-    public string[] cnames;
     private float lastUpdate;
 
     private void Start()
     {
-        cnames = Input.GetJoystickNames();
     }
 
     public void Update()
@@ -20,35 +18,35 @@ public class MovementSnakeVRControllerBasic : MonoBehaviour
 
     private void changeDirection()
     {
-        Debug.Log("Horizontal");
-        Debug.Log(Input.GetAxis("Horizontal"));
-        Debug.Log("Vertical");
-        Debug.Log(Input.GetAxis("Vertical"));
+        Debug.Log("LeftHorizontal" + "RightHorizontal");
+        Debug.Log(Input.GetAxis("LeftHorizontal") + " | " + Input.GetAxis("LeftHorizontal"));
+        Debug.Log("LeftVertical" + "RightVertical");
+        Debug.Log(Input.GetAxis("LeftVertical") +" | "+Input.GetAxis("LeftVertical"));
 
         if (!checkMovement())
         {
             return;
         }
 
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            Debug.Log("+");
-            MovementSnake.instance.rotateUp();
-            lastUpdate = Time.time;
-        }
-        else if (Input.GetAxis("Vertical") < -0)
+        if (Input.GetAxis("LeftVertical") > 0.3 || Input.GetAxis("RightVertical") > 0.3)
         {
             Debug.Log("-");
             MovementSnake.instance.rotateDown();
             lastUpdate = Time.time;
         }
-        else if (Input.GetAxis("Horizontal") > 0)
+        else if (Input.GetAxis("LeftVertical") < -0.3 || Input.GetAxis("RightVertical") < -0.3)
+        {
+            Debug.Log("+");
+            MovementSnake.instance.rotateUp();
+            lastUpdate = Time.time; 
+        }
+        else if (Input.GetAxis("LeftHorizontal") > 0.3 || Input.GetAxis("RightHorizontal") > 0.3)
         {
             Debug.Log("+");
             MovementSnake.instance.rotateRight();
             lastUpdate = Time.time;
         }
-        else if (Input.GetAxis("Horizontal") < -0)
+        else if (Input.GetAxis("LeftHorizontal") < -0.3 || Input.GetAxis("RightHorizontal") < -0.3)
         {
             Debug.Log("-");
             MovementSnake.instance.rotateLeft();

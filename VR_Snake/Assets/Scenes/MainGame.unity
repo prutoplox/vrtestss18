@@ -3082,8 +3082,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 193c22a3b77f93a4c90613db62dc076f, type: 2}
-  - {fileID: 2100000, guid: 193c22a3b77f93a4c90613db62dc076f, type: 2}
+  - {fileID: 2100000, guid: 0ea4565aab90cef40a5cb241fb9fb2b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3105,10 +3104,9 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.1
+    widthMultiplier: 0.15
     widthCurve:
       serializedVersion: 2
       m_Curve:

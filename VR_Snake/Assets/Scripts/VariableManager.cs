@@ -167,8 +167,8 @@ public class VariableManager : MonoBehaviour
         useKeyboard = true;
         useVRAdvanced = false;
         useVRBasic = false;
-        useVR360persistent = true;
-        useVRControllerBasic = false;
+        useVR360persistent = false;
+        useVRControllerBasic = true;
         useVRControllerBasicButtons = false;
         useRotationControl = false;
 
@@ -190,7 +190,7 @@ public class VariableManager : MonoBehaviour
 
         hasWon = false;
         hasLost = false;
-        msPerMovementOfSnake = 500;
+        msPerMovementOfSnake = 900;
         dieOnBodyCollsion = true;
         dieOnWallCollsion = true;
         initalLength = 2;

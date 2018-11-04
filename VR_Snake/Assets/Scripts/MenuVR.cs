@@ -10,6 +10,7 @@ public class MenuVR : MonoBehaviour
     int selectedButton;
     float scaleFactor = 2f;
     Vector3 originalScale;
+    int timeout = 0;
 
     // Use this for initialization
     void Start()
@@ -34,30 +35,31 @@ public class MenuVR : MonoBehaviour
         {
             return;
         }
+    
+        if(timeout != 0)
+        {
+            timeout--;
+            return;
+        }
+        Debug.Log(Input.GetAxis("LeftVertical"));
 
         //IDs from https://docs.unity3d.com/Manual/Windows-Mixed-Reality-Input.html
 
         //if (Input.GetButtonDown("menudown"))
 
-        if (Input.GetKeyDown(KeyCode.M) )
-       // if (Input.GetKeyDown(KeyCode.S) || Input.GetButtonDown("4"))
+        if (Input.GetKeyDown(KeyCode.M) || Input.GetAxis("LeftVertical") > 0.3) 
         {
             selectNextButton();
+            timeout = 6;
         }
-
-        //if (Input.GetButtonDown("menuup"))
-
-       // if (Input.GetKeyDown(KeyCode.W) || Input.GetButtonDown("5"))
-        if (Input.GetKeyDown(KeyCode.N))
+        
+        if (Input.GetKeyDown(KeyCode.N) || Input.GetAxis("LeftVertical") < -0.3)
         {
             selectPreviousButton();
+            timeout = 6;
         }
-
-        //if (Input.GetButtonDown("menuup"))
-
-
-       // if (Input.GetKeyDown(KeyCode.D) || Input.GetButtonDown("6"))
-        if (Input.GetKeyDown(KeyCode.B))
+        
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.JoystickButton14) || Input.GetKeyDown(KeyCode.JoystickButton15))
         {
             selectedMenuFromButton();
         }
