@@ -10,11 +10,11 @@ public class MenuVR : MonoBehaviour
     int selectedButton;
     float scaleFactor = 2f;
     Vector3 originalScale;
+    static private int timeout = 0;
 
     // Use this for initialization
     void Start()
     {
-        
         selectedButton = 0;
         enableButton(selectedButton);
     }
@@ -29,6 +29,12 @@ public class MenuVR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timeout > 0)
+        {
+            timeout--;
+            return;
+        }
+
         Canvas parentcanvas = GetComponent<Canvas>();
         if (!parentcanvas.enabled)
         {
@@ -39,15 +45,16 @@ public class MenuVR : MonoBehaviour
 
         //if (Input.GetButtonDown("menudown"))
 
-        if (Input.GetKeyDown(KeyCode.M) )
-       // if (Input.GetKeyDown(KeyCode.S) || Input.GetButtonDown("4"))
+        if (Input.GetKeyDown(KeyCode.M))
+
+        // if (Input.GetKeyDown(KeyCode.S) || Input.GetButtonDown("4"))
         {
             selectNextButton();
         }
 
         //if (Input.GetButtonDown("menuup"))
 
-       // if (Input.GetKeyDown(KeyCode.W) || Input.GetButtonDown("5"))
+        // if (Input.GetKeyDown(KeyCode.W) || Input.GetButtonDown("5"))
         if (Input.GetKeyDown(KeyCode.N))
         {
             selectPreviousButton();
@@ -55,10 +62,10 @@ public class MenuVR : MonoBehaviour
 
         //if (Input.GetButtonDown("menuup"))
 
-
-       // if (Input.GetKeyDown(KeyCode.D) || Input.GetButtonDown("6"))
+        // if (Input.GetKeyDown(KeyCode.D) || Input.GetButtonDown("6"))
         if (Input.GetKeyDown(KeyCode.B))
         {
+            timeout = 5;
             selectedMenuFromButton();
         }
     }
@@ -79,10 +86,13 @@ public class MenuVR : MonoBehaviour
 
     private void selectedMenuFromButton()
     {
+        Debug.Log("Selecting menu in " + transform.name + " parent is " + transform.parent.name);
+        Debug.Log("Canvas enabled is: " + GetComponent<Canvas>().enabled);
         if (buttons[selectedButton].name == "StartGame")
         {
             StartGame.startThisGame = true;
             VariableManager.instance.startGame = true;
+
             //VariableManager.instance.startTime = Time.time;
             VariableManager.instance.showNoMenu();
             VariableManager.instance.useGameCam();
