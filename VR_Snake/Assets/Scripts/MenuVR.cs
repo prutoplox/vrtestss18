@@ -10,7 +10,7 @@ public class MenuVR : MonoBehaviour
     int selectedButton;
     float scaleFactor = 2f;
     Vector3 originalScale;
-    int timeout = 0;
+    static private int timeout = 0;
 
     // Use this for initialization
     void Start()
@@ -29,37 +29,34 @@ public class MenuVR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timeout > 0)
+        {
+            timeout--;
+            return;
+        }
+
         Canvas parentcanvas = GetComponent<Canvas>();
         if (!parentcanvas.enabled)
         {
             return;
         }
-    
-        if(timeout != 0)
-        {
-            timeout--;
-            return;
-        }
         Debug.Log(Input.GetAxis("LeftVertical"));
 
-        //IDs from https://docs.unity3d.com/Manual/Windows-Mixed-Reality-Input.html
-
-        //if (Input.GetButtonDown("menudown"))
-
-        if (Input.GetKeyDown(KeyCode.M) || Input.GetAxis("LeftVertical") > 0.3) 
+        if (Input.GetKeyDown(KeyCode.M) || Input.GetAxis("LeftVertical") > 0.3)
         {
             selectNextButton();
             timeout = 6;
         }
-        
+
         if (Input.GetKeyDown(KeyCode.N) || Input.GetAxis("LeftVertical") < -0.3)
         {
             selectPreviousButton();
             timeout = 6;
         }
-        
+
         if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.JoystickButton14) || Input.GetKeyDown(KeyCode.JoystickButton15))
         {
+            timeout = 5;
             selectedMenuFromButton();
         }
     }
@@ -80,10 +77,13 @@ public class MenuVR : MonoBehaviour
 
     private void selectedMenuFromButton()
     {
+        Debug.Log("Selecting menu in " + transform.name + " parent is " + transform.parent.name);
+        Debug.Log("Canvas enabled is: " + GetComponent<Canvas>().enabled);
         if (buttons[selectedButton].name == "StartGame")
         {
             StartGame.startThisGame = true;
             VariableManager.instance.startGame = true;
+
             //VariableManager.instance.startTime = Time.time;
             VariableManager.instance.showNoMenu();
             VariableManager.instance.useGameCam();
