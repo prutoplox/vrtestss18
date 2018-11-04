@@ -148,7 +148,6 @@ public class VariableManager : MonoBehaviour
 
     //shadow text
     public Text place1shadow;
-
     public Text place2shadow;
     public Text place3shadow;
     public Text place4shadow;
@@ -279,12 +278,11 @@ public class VariableManager : MonoBehaviour
 
     public void showHighscoreMenu()
     {
+        showHighscore = true;
         showGameOver = false;
         showMainMenu = false;
         showPause = false;
         showOptions = false;
-        showHighscore = true;
-
     }
 
     public void showOptionsMenu()
@@ -445,8 +443,7 @@ public class VariableManager : MonoBehaviour
 
     public void setHighscoreToTextFields()
     {
-        try
-        {
+       
             string[] scores = VariableManager.instance.highScoreManager.getTopFiveHighscoreAsArray();
             placeT1.text = "1: \t" + scores[0];
             placeT2.text = "2: \t" + scores[1];
@@ -459,10 +456,10 @@ public class VariableManager : MonoBehaviour
             place3shadow.text = "3: \t" + scores[2];
             place4shadow.text = "4: \t" + scores[3];
             place5shadow.text = "5: \t" + scores[4];
-        }
+        /**}
         catch (Exception)
         {
             Debug.Log("VariableManager not init");
-        }
+        }**/
     }
 }

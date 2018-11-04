@@ -15,7 +15,6 @@ public class MenuVR : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
         selectedButton = 0;
         enableButton(selectedButton);
     }
@@ -102,7 +101,6 @@ public class MenuVR : MonoBehaviour
         {
             VariableManager.instance.useMenuCam();
             VariableManager.instance.showHighscoresText();
-            VariableManager.instance.showHighscoreMenu();
         }
         else if (buttons[selectedButton].name == "Options")
         {

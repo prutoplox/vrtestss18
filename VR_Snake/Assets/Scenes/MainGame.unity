@@ -10889,16 +10889,16 @@ MonoBehaviour:
   enablePowerUps: 0
   enableHardmode: 0
   enableUseVr: 0
-  placeT1: {fileID: 0}
-  placeT2: {fileID: 0}
-  placeT3: {fileID: 0}
-  placeT4: {fileID: 0}
-  placeT5: {fileID: 0}
-  place1shadow: {fileID: 0}
-  place2shadow: {fileID: 0}
-  place3shadow: {fileID: 0}
-  place4shadow: {fileID: 0}
-  place5shadow: {fileID: 0}
+  placeT1: {fileID: 1326930707}
+  placeT2: {fileID: 1579011360}
+  placeT3: {fileID: 581644018}
+  placeT4: {fileID: 2112391032}
+  placeT5: {fileID: 1929097602}
+  place1shadow: {fileID: 815360064}
+  place2shadow: {fileID: 1263965418}
+  place3shadow: {fileID: 1160384132}
+  place4shadow: {fileID: 1473644059}
+  place5shadow: {fileID: 1818812316}
 --- !u!114 &981963144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10956,7 +10956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f636bd6a220ce47a8e6d590094e463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cnames: []
 --- !u!1 &982749235
 GameObject:
   m_ObjectHideFlags: 0
