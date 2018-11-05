@@ -58,7 +58,7 @@ public class Score : MonoBehaviour
     {
         if (NearlyEqual((VariableManager.instance.gameTime % 5), 0))
         {
-            adjustScoreForPowerUp(-3);
+            //adjustScoreForPowerUp(-3);
         }
     }
 

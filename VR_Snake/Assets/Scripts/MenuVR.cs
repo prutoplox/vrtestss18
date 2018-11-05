@@ -170,6 +170,21 @@ public class MenuVR : MonoBehaviour
                 VariableManager.instance.setHardModeOn();
             }
         }
+        else if (buttons[selectedButton].name == "GazeModeOption")
+        {
+            Slider slider = GameObject.Find("GazeModeSlider").GetComponent<Slider>();
+            Debug.Log("Gaze is " + slider.value);
+            if (slider.value >= 0.5f)
+            {
+                slider.value = 0f;
+                VariableManager.instance.setGazeModeOff();
+            }
+            else
+            {
+                slider.value = 1f;
+                VariableManager.instance.setGazeModeOn();
+            }
+        }
         else if (buttons[selectedButton].name == "VRControlOption")
         {
             Slider slider = GameObject.Find("UseVrSlider").GetComponent<Slider>();

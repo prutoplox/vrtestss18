@@ -7,6 +7,7 @@ public class OptionHandler : MonoBehaviour
     public Slider powerUpSlider;
     public Slider hardModeSlider;
     public Slider useVrSlider;
+    public Slider useGazeSlider;
 
     public bool isFocusVolume;
     public bool isFocusPowerUp;
@@ -19,7 +20,7 @@ public class OptionHandler : MonoBehaviour
     void Start()
     {
         hasValueChanged = false;
-        volumeSlider.value = 1;
+        
     }
 
     // Update is called once per frame
@@ -27,13 +28,14 @@ public class OptionHandler : MonoBehaviour
     {
         handleHardMode();
         handlePowerUps();
-        handleUseVR();
+       // handleUseVR();
         handleVolume();
 
         volumeSlider.value = AudioManager.instance.volume;
         powerUpSlider.value = VariableManager.instance.enablePowerUps ? 1 : 0;
         hardModeSlider.value = VariableManager.instance.enableHardmode ? 1 : 0;
         useVrSlider.value = VariableManager.instance.enableUseVr ? 1 : 0;
+        useGazeSlider.value = VariableManager.instance.enableGaze ? 1 : 0;
     }
 
     public void handleVolume()
@@ -109,7 +111,7 @@ public class OptionHandler : MonoBehaviour
         }
     }
 
-    public void handleUseVR()
+  /**  public void handleUseVR()
     {
         if (hasValueChanged)
         {
@@ -131,5 +133,5 @@ public class OptionHandler : MonoBehaviour
                 VariableManager.instance.setUseVrOn();
             }
         }
-    }
+    }*/
 }

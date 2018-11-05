@@ -130,7 +130,10 @@ public class VariableManager : MonoBehaviour
     public bool enablePowerUps;
 
     public bool enableHardmode;
+    public bool enableGaze;
     public bool enableUseVr;
+    //Gaze
+    public LineRenderer gaze;
 
     //Scores
 
@@ -228,9 +231,10 @@ public class VariableManager : MonoBehaviour
         rowAppleExtraApples = 3;
 
         //Options
-        enablePowerUps = false;
+        enablePowerUps = true;
         enableHardmode = false;
-        enableUseVr = false;
+        enableUseVr = true;
+        enableGaze = true;
     }
 
     public void showNoMenu()
@@ -314,15 +318,6 @@ public class VariableManager : MonoBehaviour
 
     public void setUseVrOff()
     {
-        /*  //Controller variables
-    public bool useVRBasic;
-
-    public bool useVR360persistent;
-    public bool useKeyboard;
-    public bool useVRAdvanced;
-    public bool useExperimental;
-    public bool useVRControllerBasic;
-    public bool useVRControllerBasicButtons;*/
         enableUseVr = false;
         VariableManager.instance.useVR360persistent = false;
         VariableManager.instance.useKeyboard = true;
@@ -350,6 +345,18 @@ public class VariableManager : MonoBehaviour
     public void setHardModeOn()
     {
         enableHardmode = true;
+    }
+
+    public void setGazeModeOff()
+    {
+        gaze.enabled = false;
+        enableGaze = false;
+    }
+
+    public void setGazeModeOn()
+    {
+        gaze.enabled = true;
+        enableGaze = true;
     }
 
     public void setPowerUpOn()

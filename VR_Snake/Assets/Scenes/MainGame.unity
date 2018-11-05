@@ -3621,7 +3621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 289771387}
   m_Layer: 5
-  m_Name: HardModeOption
+  m_Name: GazeModeOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8995,7 +8995,7 @@ GameObject:
   - component: {fileID: 765871795}
   - component: {fileID: 765871794}
   m_Layer: 5
-  m_Name: Hardmode
+  m_Name: GazeMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9038,7 +9038,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: HardMode
+  m_text: Use Gaze
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 808aa8f1ab804104aa7d0c337a6c1481, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 7dd7006c58d8a3148a73aa211d8c13d0, type: 2}
@@ -11913,7 +11913,7 @@ MonoBehaviour:
   snakeThicknessZ: 0.9
   gazeLength: 0
   correctGazeYPosition: 0
-  startGame: 0
+  isRunning: 0
   showMainMenu: 1
   showHighscore: 0
   showGameOver: 0
@@ -11923,7 +11923,6 @@ MonoBehaviour:
   score: 0
   bonusScore: 0
   startTime: 0
-  allTime: 0
   gameTime: 0
   place1: 0
   place2: 0
@@ -11945,7 +11944,9 @@ MonoBehaviour:
   rowAppleExtraApples: 0
   enablePowerUps: 0
   enableHardmode: 0
+  enableGaze: 0
   enableUseVr: 0
+  gaze: {fileID: 266919216}
   placeT1: {fileID: 1326930707}
   placeT2: {fileID: 1579011360}
   placeT3: {fileID: 581644018}
@@ -14127,7 +14128,7 @@ GameObject:
   - component: {fileID: 1297927446}
   - component: {fileID: 1297927447}
   m_Layer: 5
-  m_Name: HardModeSlider
+  m_Name: GazeModeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14196,7 +14197,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15235,6 +15236,7 @@ MonoBehaviour:
   powerUpSlider: {fileID: 1603867913}
   hardModeSlider: {fileID: 1297927447}
   useVrSlider: {fileID: 763033961}
+  useGazeSlider: {fileID: 1297927447}
   isFocusVolume: 0
   isFocusPowerUp: 0
   isFocusHardModeOn: 0
