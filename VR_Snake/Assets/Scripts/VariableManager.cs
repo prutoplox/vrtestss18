@@ -79,7 +79,6 @@ public class VariableManager : MonoBehaviour
 
     //
     public bool showMainMenu;
-
     public bool showHighscore;
     public bool showGameOver;
     public bool showOptions;
@@ -105,17 +104,14 @@ public class VariableManager : MonoBehaviour
     //Power Ups
     //Shrink
     public float powerUpShrinkTimeMin;
-
     public float powerUpShrinkTimeMax;
 
     //Grow
     public float powerUpGrowTimeMin;
-
     public float powerUpGrowTimeMax;
 
     //golden Apple
     public float goldenAppleTimeMin;
-
     public float goldenAppleTimeMax;
     public float goldenApplePointMultiplier;
 
@@ -321,14 +317,32 @@ public class VariableManager : MonoBehaviour
 
     public void setUseVrOff()
     {
+        /*  //Controller variables
+    public bool useVRBasic;
+
+    public bool useVR360persistent;
+    public bool useKeyboard;
+    public bool useVRAdvanced;
+    public bool useExperimental;
+    public bool useVRControllerBasic;
+    public bool useVRControllerBasicButtons;*/
         enableUseVr = false;
         VariableManager.instance.useVR360persistent = false;
+        VariableManager.instance.useKeyboard = true;
+        VariableManager.instance.useVRControllerBasic = true;
+        VariableManager.instance.useRotationControl = true;
+        VariableManager.instance.useVRControllerBasicButtons = true;
+        
     }
 
     public void setUseVrOn()
     {
         enableUseVr = true;
         VariableManager.instance.useVR360persistent = true;
+        VariableManager.instance.useKeyboard = true;
+        VariableManager.instance.useVRControllerBasic = true;
+        VariableManager.instance.useRotationControl = true;
+        VariableManager.instance.useVRControllerBasicButtons = true;
     }
 
     public void setHardModeOff()
