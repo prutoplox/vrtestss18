@@ -42,6 +42,8 @@ public class StartGame : MonoBehaviour
     {
         MovementSnake.instance.Reset();
         AudioManager.instance.playGameMusic();
+        VariableManager.instance.bonusScore = 100;
+        VariableManager.instance.resetPowerUp();
         VariableManager.instance.showMainMenu = false;
         VariableManager.instance.showGameOver = false;
         VariableManager.instance.startTime = Time.time;

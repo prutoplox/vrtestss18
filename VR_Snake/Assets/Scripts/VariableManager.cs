@@ -221,8 +221,8 @@ public class VariableManager : MonoBehaviour
         goldenApplePointMultiplier = 10;
 
         //mulit apple
-        multiAppleTimeMin = 20;
-        multiAppleTimeMax = 60;
+        multiAppleTimeMin = 2;
+        multiAppleTimeMax = 6;
         multiAppleExtraApples = 5;
 
         //row apple
@@ -416,6 +416,12 @@ public class VariableManager : MonoBehaviour
         {
             item.hideObject();
         }
+    }
+
+    public void resetPowerUp()
+    {
+        setPowerUpOff();
+        setPowerUpOn();
     }
 
     public void getHighScores()

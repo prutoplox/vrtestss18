@@ -74,7 +74,6 @@ public class MovementSnake : MonoBehaviour
         if (VariableManager.instance.dieOnWallCollsion)
         {
             showOnlyGameOver();
-            VariableManager.instance.showGameOverMenu();
             VariableManager.instance.highScoreManager.setHighScore(VariableManager.instance.score);
             Debug.Log("Collided with the wall and died");
             VariableManager.instance.hasLost = true;
@@ -93,7 +92,6 @@ public class MovementSnake : MonoBehaviour
         if (VariableManager.instance.dieOnBodyCollsion)
         {
             showOnlyGameOver();
-
             Debug.Log("Collided with a part of the body and died");
             VariableManager.instance.hasLost = true;
         }
@@ -142,7 +140,6 @@ public class MovementSnake : MonoBehaviour
             GrowSnake();
         }
         VariableManager.instance.startTime = Time.time;
-        VariableManager.instance.bonusScore = 0;
     }
 
     internal void rotateRight()

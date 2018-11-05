@@ -5,6 +5,7 @@ public class PowerUpMultiApple : MonoBehaviour
     public float respawnTimeMin;
     public float respawnTimeMax;
     private float timeTillRespawn;
+    private bool isPrimary;
 
     // Use this for initialization
     void Start()
@@ -12,31 +13,42 @@ public class PowerUpMultiApple : MonoBehaviour
         respawnTimeMin = VariableManager.instance.multiAppleTimeMin;
         respawnTimeMax = VariableManager.instance.multiAppleTimeMax;
         ScheduleRespawn();
+        isPrimary = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Snake")
         {
+            
             Debug.Log("Snake hit some food");
             MovementSnake.instance.GrowSnake();
             AudioManager.instance.playSnakeEat();
             VariableManager.instance.eatPoints();
-            ScheduleRespawn();
+
+            if (!isPrimary)
+            {
+                Destroy(this);
+                return;
+            }
+            
             Food apple = UnityEngine.Object.FindObjectOfType<Food>();
             for (int i = 0; i < VariableManager.instance.multiAppleExtraApples; i++)
             {
                 Food newApple = Instantiate(apple);
                 newApple.selfDestructOnUse = true;
                 newApple.SpawnAtNewPosition();
+                newApple.GetComponent<PowerUpMultiApple>().isPrimary = false;
             }
+
+            ScheduleRespawn();
         }
     }
 
     public void ScheduleRespawn()
     {
         timeTillRespawn = ((respawnTimeMax - respawnTimeMin) * UnityEngine.Random.value) + respawnTimeMin;
-        hideObject();
+        //hideObject();
     }
 
     // Update is called once per frame

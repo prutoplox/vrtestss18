@@ -20,5 +20,5 @@ public class ShowScoreGameOver : MonoBehaviour {
             scoreText.text = "Score: " + VariableManager.instance.score.ToString("f2");
             scoreTextS.text = "Score: " + VariableManager.instance.score.ToString("f2");
         }
-	}
+    }
 }
