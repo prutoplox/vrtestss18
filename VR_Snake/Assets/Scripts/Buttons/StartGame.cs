@@ -34,7 +34,7 @@ public class StartGame : MonoBehaviour
     public void startGame()
     {
         Debug.Log("Start");
-        VariableManager.instance.startGame = true;
+        VariableManager.instance.isRunning = true;
         switcher = true;
     }
 

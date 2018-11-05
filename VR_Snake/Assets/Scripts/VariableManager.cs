@@ -75,7 +75,7 @@ public class VariableManager : MonoBehaviour
     public float correctGazeYPosition;
 
     //User Interface/Menu
-    public bool startGame;
+    public bool isRunning;
 
     //
     public bool showMainMenu;
@@ -91,7 +91,6 @@ public class VariableManager : MonoBehaviour
     public float score;
     public float bonusScore;
     public float startTime;
-    public float allTime;
     public float gameTime;
 
     //
@@ -141,6 +140,7 @@ public class VariableManager : MonoBehaviour
 
     //Scores
     public Text placeT1;
+
     public Text placeT2;
     public Text placeT3;
     public Text placeT4;
@@ -148,6 +148,7 @@ public class VariableManager : MonoBehaviour
 
     //shadow text
     public Text place1shadow;
+
     public Text place2shadow;
     public Text place3shadow;
     public Text place4shadow;
@@ -200,7 +201,7 @@ public class VariableManager : MonoBehaviour
         snakeThicknessX = 0.6f;
         snakeThicknessZ = snakeThicknessX;
 
-        startGame = false;
+        isRunning = false;
         showMainMenu = true;
         showHighscore = false;
         showGameOver = false;
@@ -234,8 +235,6 @@ public class VariableManager : MonoBehaviour
         enablePowerUps = false;
         enableHardmode = false;
         enableUseVr = false;
-
-        
     }
 
     public void showNoMenu()
@@ -254,7 +253,6 @@ public class VariableManager : MonoBehaviour
         showHighscore = false;
         showOptions = false;
         showGameOver = true;
-
     }
 
     public void showMainMenuMenu()
@@ -264,7 +262,6 @@ public class VariableManager : MonoBehaviour
         showHighscore = false;
         showOptions = false;
         showMainMenu = true;
-
     }
 
     public void showPauseMenu()
@@ -443,19 +440,18 @@ public class VariableManager : MonoBehaviour
 
     public void setHighscoreToTextFields()
     {
-       
-            string[] scores = VariableManager.instance.highScoreManager.getTopFiveHighscoreAsArray();
-            placeT1.text = "1: \t" + scores[0];
-            placeT2.text = "2: \t" + scores[1];
-            placeT3.text = "3: \t" + scores[2];
-            placeT4.text = "4: \t" + scores[3];
-            placeT5.text = "5: \t" + scores[4];
+        string[] scores = VariableManager.instance.highScoreManager.getTopFiveHighscoreAsArray();
+        placeT1.text = "1: \t" + scores[0];
+        placeT2.text = "2: \t" + scores[1];
+        placeT3.text = "3: \t" + scores[2];
+        placeT4.text = "4: \t" + scores[3];
+        placeT5.text = "5: \t" + scores[4];
 
-            place1shadow.text = "1: \t" + scores[0];
-            place2shadow.text = "2: \t" + scores[1];
-            place3shadow.text = "3: \t" + scores[2];
-            place4shadow.text = "4: \t" + scores[3];
-            place5shadow.text = "5: \t" + scores[4];
+        place1shadow.text = "1: \t" + scores[0];
+        place2shadow.text = "2: \t" + scores[1];
+        place3shadow.text = "3: \t" + scores[2];
+        place4shadow.text = "4: \t" + scores[3];
+        place5shadow.text = "5: \t" + scores[4];
         /**}
         catch (Exception)
         {

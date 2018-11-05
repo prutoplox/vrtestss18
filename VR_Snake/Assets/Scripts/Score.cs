@@ -6,7 +6,6 @@ public class Score : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        VariableManager.instance.allTime = 0;
         VariableManager.instance.gameTime = 0;
         VariableManager.instance.bonusScore = 100;
     }
@@ -14,16 +13,16 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       /*
-        Debug.Log("SCORE" + VariableManager.instance.score.ToString());
-        Debug.Log("BONUS SCORE" + VariableManager.instance.bonusScore.ToString());
-        Debug.Log("GAMETIME" + VariableManager.instance.gameTime.ToString());
-        Debug.Log("ALLTIME" + VariableManager.instance.allTime.ToString());
-        Debug.Log("TimeSCORE" + VariableManager.instance.timeScore.ToString()); */
-        
-        if (VariableManager.instance.startGame)
+        /*
+         Debug.Log("SCORE" + VariableManager.instance.score.ToString());
+         Debug.Log("BONUS SCORE" + VariableManager.instance.bonusScore.ToString());
+         Debug.Log("GAMETIME" + VariableManager.instance.gameTime.ToString());
+         Debug.Log("ALLTIME" + VariableManager.instance.allTime.ToString());
+         Debug.Log("TimeSCORE" + VariableManager.instance.timeScore.ToString());
+         */
+
+        if (VariableManager.instance.isRunning)
         {
-            VariableManager.instance.allTime = Time.time;
             calcGameTime();
             calcTimeScore();
             timePunishment();
@@ -31,7 +30,6 @@ public class Score : MonoBehaviour
         }
         else
         {
-            VariableManager.instance.allTime = Time.time;
             calcFinalScore();
         }
     }
@@ -43,7 +41,7 @@ public class Score : MonoBehaviour
 
     private void calcTimeScore()
     {
-        VariableManager.instance.timeScore = VariableManager.instance.allTime - VariableManager.instance.startTime;
+        VariableManager.instance.timeScore = Time.time - VariableManager.instance.startTime;
     }
 
     private void adjustScoreForPowerUp(float value)

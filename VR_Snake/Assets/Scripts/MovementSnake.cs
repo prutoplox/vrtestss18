@@ -83,7 +83,7 @@ public class MovementSnake : MonoBehaviour
 
     private static void showOnlyGameOver()
     {
-        VariableManager.instance.startGame = false;
+        VariableManager.instance.isRunning = false;
         VariableManager.instance.useMenuCam();
         VariableManager.instance.showGameOverMenu();
     }
@@ -141,6 +141,8 @@ public class MovementSnake : MonoBehaviour
         {
             GrowSnake();
         }
+        VariableManager.instance.startTime = Time.time;
+        VariableManager.instance.bonusScore = 0;
     }
 
     internal void rotateRight()
