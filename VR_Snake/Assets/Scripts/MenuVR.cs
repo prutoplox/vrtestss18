@@ -82,7 +82,7 @@ public class MenuVR : MonoBehaviour
         if (buttons[selectedButton].name == "StartGame")
         {
             StartGame.startThisGame = true;
-            VariableManager.instance.startGame = true;
+            VariableManager.instance.isRunning = true;
 
             //VariableManager.instance.startTime = Time.time;
             VariableManager.instance.showNoMenu();

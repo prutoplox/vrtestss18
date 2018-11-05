@@ -8,7 +8,6 @@ public class MenuManager : MonoBehaviour
     public GameObject pause;
     public GameObject gameover;
 
-
     private void Start()
     {
         Debug.Log("MenuManager Init");
@@ -17,13 +16,8 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (VariableManager.instance.startGame)
-        {
-        }
-
         if (VariableManager.instance.showMainMenu == true)
         {
-    
             SnakeAutopilot.instance.activateAutopilot();
             mainmenu.GetComponent<Canvas>().enabled = true;
 
